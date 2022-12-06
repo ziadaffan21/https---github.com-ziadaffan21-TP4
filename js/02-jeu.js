@@ -145,31 +145,26 @@ function creerPersonnage(classe) {
  */
 function placerAleatoirement(classe) {
     let newPos = null;
-    let x = entierAleatoire(0, 14);
-    let y = entierAleatoire(0, 9);
-    let ligne = $(".ligne").eq(y).children().eq(x);
     let trouve = false;
     // TODO
     while (!trouve) {
-        if (ligne.className !== "mechant" && ligne.className !== "joueur") {
-
+        console.log(trouve);
+        let x = entierAleatoire(0, 14);
+        let y = entierAleatoire(0, 9);
+        let ligne = $(".ligne").eq(y).children().eq(x);
+        if (ligne.attr.class == null) {
             if (classe === "joueur") {
-
                 ligne.addClass(classe);
                 newPos = ligne;
                 trouve = true;
-
             } else if (classe === "mechant") {
-
                 trouve = true;
                 ligne.addClass(classe);
-
             }
-
+            trouve == true;
         }
         else {
-            x = entierAleatoire(0, 14);
-            y = entierAleatoire(0, 9);
+            trouve == false;
         }
     }
 
