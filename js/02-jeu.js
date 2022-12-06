@@ -40,11 +40,10 @@ function getDirectionsPossibles(position) {
             dirs[2] = Directions.HAUT;
         }
     } else {
-        dirs[0] = Directions.HAUT;
+        dirs[0] = Directions.DROIT;
         dirs[1] = Directions.BAS;
+        dirs[2] = Directions.HAUT;
         dirs[3] = Directions.GAUCHE;
-        dirs[4] = Directions.DROIT;
-
     }
 
 
@@ -122,6 +121,9 @@ function faireAvancerSiPossible(position, classe, direction) {
     // TODO
     for (let i = 0; i < listDirPossible.length; i++) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
+            let lePersoData = $(position).data("personnage");
+            position.removeData("personnage");
+            positionPossible.data("personnage", lePersoData);
             position.removeClass(classe);
             positionPossible.addClass(classe);
             newPos = positionPossible;
