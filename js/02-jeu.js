@@ -29,9 +29,7 @@ function getDirectionsPossibles(position) {
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
-    }
-
-    if (position.data("x") == 14) {
+    } else if (position.data("x") == 14) {
         dirs[0] = Directions.GAUCHE;
         if (position.data("y") == 0) {
             dirs[1] = Directions.BAS;
@@ -41,7 +39,16 @@ function getDirectionsPossibles(position) {
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
+    } else {
+        dirs[0] = Directions.HAUT;
+        dirs[1] = Directions.BAS;
+        dirs[3] = Directions.GAUCHE;
+        dirs[4] = Directions.DROIT;
+
     }
+
+
+
 
     return dirs;
 }
@@ -54,7 +61,7 @@ function getDirectionsPossibles(position) {
  * @returns La nouvelle position
  */
 function getNouvellePosition(position, direction) {
-    console.assert(getDirectionsPossibles(position).includes(direction));
+    console.assert(getDirectionsPossibles(position).includes(direction), "getDirectionsPossibles n'a pas marché");
     let index = position.index();
     let newPos = null;
 
@@ -69,7 +76,7 @@ function getNouvellePosition(position, direction) {
             newPos = position.next();
             break;
         case Directions.GAUCHE:
-            newPos = position.perv();
+            newPos = position.prev();
             break;
     }
 
@@ -110,13 +117,18 @@ function gererCombat(pos1, pos2) {
  */
 function faireAvancerSiPossible(position, classe, direction) {
     let newPos = null;
-    let positionPossible = getNouvellePosition(position);
+    let positionPossible = getNouvellePosition(position, direction);
     let listDirPossible = getDirectionsPossibles(position);
-
     // TODO
-    if (direction in listDirPossible && (!(positionPossible.hasClass("joueur") || positionPossible.hasClass("mechant")))) {
-        return newPos = positionPossible;
+    for (let i = 0; i < listDirPossible.length; i++) {
+        if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
+            position.removeClass(classe);
+            positionPossible.addClass(classe);
+            newPos = positionPossible;
+            return newPos;
+        }
     }
+
     return null;
 }
 
