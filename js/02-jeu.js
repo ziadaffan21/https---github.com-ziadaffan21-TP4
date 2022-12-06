@@ -29,9 +29,7 @@ function getDirectionsPossibles(position) {
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
-    }
-
-    if (position.data("x") == 14) {
+    } else if (position.data("x") == 14) {
         dirs[0] = Directions.GAUCHE;
         if (position.data("y") == 0) {
             dirs[1] = Directions.BAS;
@@ -41,6 +39,11 @@ function getDirectionsPossibles(position) {
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
+    } else {
+        dirs[0] = Directions.DROIT;
+        dirs[1] = Directions.BAS;
+        dirs[2] = Directions.HAUT;
+        dirs[3] = Directions.GAUCHE;
     }
 
     return dirs;
