@@ -20,22 +20,27 @@ function getDirectionsPossibles(position) {
     const dirs = [];
 
     if (position.data("x") == 0) {
-        dirs[0] = Directions.DROIT;
         if (position.data("y") == 0) {
+            dirs[0] = Directions.DROIT;
             dirs[1] = Directions.BAS;
         } else if (position.data("y") == 9) {
+            dirs[0] = Directions.DROIT;
             dirs[1] = Directions.HAUT;
         } else {
+            dirs[0] = Directions.DROIT;
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
-    } else if (position.data("x") == 14) {
-        dirs[0] = Directions.GAUCHE;
+    } 
+    else if (position.data("x") == 14) {
         if (position.data("y") == 0) {
+            dirs[0] = Directions.GAUCHE;
             dirs[1] = Directions.BAS;
         } else if (position.data("y") == 9) {
+            dirs[0] = Directions.GAUCHE;
             dirs[1] = Directions.HAUT;
         } else {
+            dirs[0] = Directions.GAUCHE;
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
@@ -45,10 +50,6 @@ function getDirectionsPossibles(position) {
         dirs[2] = Directions.HAUT;
         dirs[3] = Directions.GAUCHE;
     }
-
-
-
-
     return dirs;
 }
 
