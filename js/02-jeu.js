@@ -33,10 +33,32 @@ function getDirectionsPossibles(position) {
  */
 function getNouvellePosition(position, direction) {
     console.assert(getDirectionsPossibles(position).includes(direction));
-
+    let index = position.index();
+    let listDirPossible = getDirectionsPossibles(position);
     let newPos = null;
 
-    // TODO
+    switch (direction) {
+        case Directions.HAUT:
+            if (Directions.HAUT in listDirPossible) {
+                newPos = position.parent().prev().children().eq(index);
+            }
+            break;
+        case Directions.BAS:
+            if (Directions.BAS in listDirPossible) {
+                newPos = position.parent().next().children().eq(index);
+            }
+            break;
+        case Directions.DROIT:
+            if (Directions.DROIT in listDirPossible) {
+                newPos = position.next();
+            }
+            break;
+        case Directions.GAUCHE:
+            if (Directions.GAUCHE) {
+                newPos = position.perv();
+            }
+            break;
+    }
 
     return newPos;
 }
