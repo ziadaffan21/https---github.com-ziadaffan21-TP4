@@ -19,25 +19,25 @@ let jeu = null;
 function getDirectionsPossibles(position) {
     const dirs = [];
 
-    if(position.data("x") == 0){
+    if (position.data("x") == 0) {
         dirs[0] = Directions.DROIT;
-        if(position.data("y") == 0){
+        if (position.data("y") == 0) {
             dirs[1] = Directions.BAS;
-        } else if (position.data("y") == 9){
+        } else if (position.data("y") == 9) {
             dirs[1] = Directions.HAUT;
-        } else { 
+        } else {
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
     }
 
-    if(position.data("x") == 14){
+    if (position.data("x") == 14) {
         dirs[0] = Directions.GAUCHE;
-        if(position.data("y") == 0){
+        if (position.data("y") == 0) {
             dirs[1] = Directions.BAS;
-        } else if (position.data("y") == 9){
+        } else if (position.data("y") == 9) {
             dirs[1] = Directions.HAUT;
-        } else { 
+        } else {
             dirs[1] = Directions.BAS;
             dirs[2] = Directions.HAUT;
         }
@@ -56,29 +56,20 @@ function getDirectionsPossibles(position) {
 function getNouvellePosition(position, direction) {
     console.assert(getDirectionsPossibles(position).includes(direction));
     let index = position.index();
-    let listDirPossible = getDirectionsPossibles(position);
     let newPos = null;
 
     switch (direction) {
         case Directions.HAUT:
-            if (Directions.HAUT in listDirPossible) {
-                newPos = position.parent().prev().children().eq(index);
-            }
+            newPos = position.parent().prev().children().eq(index);
             break;
         case Directions.BAS:
-            if (Directions.BAS in listDirPossible) {
-                newPos = position.parent().next().children().eq(index);
-            }
+            newPos = position.parent().next().children().eq(index);
             break;
         case Directions.DROIT:
-            if (Directions.DROIT in listDirPossible) {
-                newPos = position.next();
-            }
+            newPos = position.next();
             break;
         case Directions.GAUCHE:
-            if (Directions.GAUCHE) {
-                newPos = position.perv();
-            }
+            newPos = position.perv();
             break;
     }
 
@@ -119,9 +110,13 @@ function gererCombat(pos1, pos2) {
  */
 function faireAvancerSiPossible(position, classe, direction) {
     let newPos = null;
+    let positionPossible = getNouvellePosition(position);
+    let listDirPossible = getDirectionsPossibles(position);
 
     // TODO
-
+    if (direction in listDirPossible && (!(positionPossible.hasClass("joueur") || positionPossible.hasClass("mechant")))) {
+        return newPos = positionPossible;
+    }
     return null;
 }
 
