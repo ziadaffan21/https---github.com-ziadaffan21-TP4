@@ -1,0 +1,36 @@
+@import "bootstrap";
+
+header {
+    @extend .py-5;
+
+    h1 {
+        @extend .display-5;
+    }
+}
+
+button {
+    @extend .btn, .btn-primary;
+}
+
+#jeu {
+    margin: auto;
+
+    .ligne {
+        height: 50px;
+        >div {
+            // Une case du jeu
+            width           : 50px;
+            min-height      : 50px;
+            display         : inline-block;
+            background-color: green;
+        }
+
+        .joueur {
+            background-color: red;
+        }
+
+        .mechant {
+            background-color: black;
+        }
+    }
+}
