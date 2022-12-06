@@ -52,6 +52,10 @@ function initialisation() {
         placerAleatoirement("mechant");
     }
 
+    console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
+    console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
+
+
     $("#demarrer").click(gererBoutonDemarrer);
 
     $(document).keydown(gererClavier);

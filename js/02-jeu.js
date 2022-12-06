@@ -137,7 +137,7 @@ function creerPersonnage(classe) {
 
     return perso;
 }
-
+let i = 0;
 /**
  * Place aléatoirement une classe sur une tuile libre du jeu
  * @param {*} classe La classe à mettre sur la tuile.
@@ -146,30 +146,20 @@ function creerPersonnage(classe) {
 function placerAleatoirement(classe) {
     let newPos = null;
     let trouve = false;
+
     // TODO
     while (!trouve) {
-        console.log(trouve);
-        let x = entierAleatoire(0, 14);
-        let y = entierAleatoire(0, 9);
-        let ligne = $(".ligne").eq(y).children().eq(x);
-        if (ligne.attr.class == null) {
-            if (classe === "joueur") {
-                ligne.addClass(classe);
-                newPos = ligne;
-                trouve = true;
-            } else if (classe === "mechant") {
-                trouve = true;
-                ligne.addClass(classe);
-            }
-            trouve == true;
-        }
-        else {
-            trouve == false;
+        let x = entierAleatoire(0, configDeJeu.taille.x - 1);
+        let y = entierAleatoire(0, configDeJeu.taille.y - 1);
+        let div = $(".ligne").eq(y).children().eq(x);
+        if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
+
+            trouve = true;
+            div.addClass(classe);
         }
     }
 
-
-
-
     return newPos;
 }
+
+
