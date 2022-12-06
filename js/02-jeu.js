@@ -19,7 +19,29 @@ let jeu = null;
 function getDirectionsPossibles(position) {
     const dirs = [];
 
-    // TODO 
+    if(position.data("x") == 0){
+        dirs[0] = Directions.DROIT;
+        if(position.data("y") == 0){
+            dirs[1] = Directions.BAS;
+        } else if (position.data("y") == 9){
+            dirs[1] = Directions.HAUT;
+        } else { 
+            dirs[1] = Directions.BAS;
+            dirs[2] = Directions.HAUT;
+        }
+    }
+
+    if(position.data("x") == 14){
+        dirs[0] = Directions.GAUCHE;
+        if(position.data("y") == 0){
+            dirs[1] = Directions.BAS;
+        } else if (position.data("y") == 9){
+            dirs[1] = Directions.HAUT;
+        } else { 
+            dirs[1] = Directions.BAS;
+            dirs[2] = Directions.HAUT;
+        }
+    }
 
     return dirs;
 }
