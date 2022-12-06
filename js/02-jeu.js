@@ -110,11 +110,16 @@ function gererCombat(pos1, pos2) {
  */
 function faireAvancerSiPossible(position, classe, direction) {
     let newPos = null;
-    let positionPossible = getNouvellePosition(position);
+    let positionPossible = getNouvellePosition(position, direction);
     let listDirPossible = getDirectionsPossibles(position);
 
     // TODO
     if (direction in listDirPossible && (!(positionPossible.hasClass("joueur") || positionPossible.hasClass("mechant")))) {
+        let lePersoData = $(position).data("personnage");
+        position.removeClass(classe);
+        position.removeData("personnage");
+        positionPossible.addClass(classe);
+        positionPossible.attr.data("personnage", lePersoData);
         return newPos = positionPossible;
     }
     return null;
