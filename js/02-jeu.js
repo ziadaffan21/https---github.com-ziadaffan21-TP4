@@ -153,9 +153,10 @@ function placerAleatoirement(classe) {
         let y = entierAleatoire(0, configDeJeu.taille.y - 1);
         let div = $(".ligne").eq(y).children().eq(x);
         if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
-
             trouve = true;
             div.addClass(classe);
+            let lePerso = creerPersonnage(classe);
+            div.data("personnage", lePerso);
         }
     }
 
