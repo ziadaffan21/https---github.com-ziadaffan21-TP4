@@ -19,62 +19,21 @@ let jeu = null;
 function getDirectionsPossibles(position) {
     const dirs = [];
 
-    dirs.push(Directions.BAS, Directions.DROIT, Directions.GAUCHE, Directions.HAUT);
-
-    if(position.data("x") == 0){
-        dirs.remove(Directions.GAUCHE);
+    if(position.data("x") > 0){
+        dirs.push(Directions.GAUCHE);
     }
-    // changer en maxColonnes
-    if(position.data("x") == 14){
-        dirs.delete(Directions.DROIT);
+    // changer le 14 par maxColonne
+    if(position.data("x") < 14){
+        dirs.push(Directions.DROIT);
     }
-    if(position.data("y") == 0){
-        dirs.delete(Directions.HAUT);
+    if(position.data("y") > 0){
+        dirs.push(Directions.HAUT);
     }
-    // changer en maxLigne
-    if(position.data("y") == 9){
-        dirs.delete(Directions.BAS);
+    // changer le 9 en maxLigne
+    if(position.data("y") < 9){
+        dirs.push(Directions.BAS);
     }
-
-    // if (position.data("x") == 0) {
-    //     if (position.data("y") == 0) {
-    //         dirs[0] = Directions.DROIT;
-    //         dirs[1] = Directions.BAS;
-    //     } else if (position.data("y") == 9) {
-    //         dirs[0] = Directions.DROIT;
-    //         dirs[1] = Directions.HAUT;
-    //     } else {
-    //         dirs[0] = Directions.DROIT;
-    //         dirs[1] = Directions.BAS;
-    //         dirs[2] = Directions.HAUT;
-    //     }
-    // } 
-    // else if (position.data("x") == 14) {
-    //     if (position.data("y") == 0) {
-    //         dirs[0] = Directions.GAUCHE;
-    //         dirs[1] = Directions.BAS;
-    //     } else if (position.data("y") == 9) {
-    //         dirs[0] = Directions.GAUCHE;
-    //         dirs[1] = Directions.HAUT;
-    //     } else {
-    //         dirs[0] = Directions.GAUCHE;
-    //         dirs[1] = Directions.BAS;
-    //         dirs[2] = Directions.HAUT;
-    //     }
-    // } else if (position.data("y") == 0){
-    //     dirs[0] = Directions.GAUCHE;
-    //     dirs[1] = Directions.BAS;
-    //     dirs[2] = Directions.DROIT;
-    // } else if(position.data("y") == 9){
-    //     dirs[0] = Directions.GAUCHE;
-    //     dirs[1] = Directions.HAUT;
-    //     dirs[2] = Directions.DROIT;
-    // } else {
-    //     dirs[0] = Directions.DROIT;
-    //     dirs[1] = Directions.BAS;
-    //     dirs[2] = Directions.HAUT;
-    //     dirs[3] = Directions.GAUCHE;
-    // }
+    
     return dirs;
 }
 
@@ -116,6 +75,7 @@ function getNouvellePosition(position, direction) {
 function gererAttaque(posAttaquant, posVictime) {
 
     // TODO
+    let forceAttaque = entierAleatoire(0, posAttaquant.dommage);
 
 }
 
@@ -155,6 +115,8 @@ function faireAvancerSiPossible(position, classe, direction) {
             positionPossible.addClass(classe);
             newPos = positionPossible;
             return newPos;
+        } else {
+            gererCombat();
         }
     }
     return null;
