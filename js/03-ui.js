@@ -39,6 +39,7 @@ function gererClavier(evenement) {
  */
 function gererBoutonDemarrer() {
     // TODO
+    posJoueur = $(".joueur");
     faireAvancerLesMechants();
 }
 
