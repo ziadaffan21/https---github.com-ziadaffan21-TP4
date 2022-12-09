@@ -139,7 +139,6 @@ function faireAvancerSiPossible(position, classe, direction) {
             return newPos;
         }
     }
-
     return null;
 }
 
