@@ -19,45 +19,21 @@ let jeu = null;
 function getDirectionsPossibles(position) {
     const dirs = [];
 
-    if (position.data("x") == 0) {
-        if (position.data("y") == 0) {
-            dirs[0] = Directions.DROIT;
-            dirs[1] = Directions.BAS;
-        } else if (position.data("y") == 9) {
-            dirs[0] = Directions.DROIT;
-            dirs[1] = Directions.HAUT;
-        } else {
-            dirs[0] = Directions.DROIT;
-            dirs[1] = Directions.BAS;
-            dirs[2] = Directions.HAUT;
-        }
-    } 
-    else if (position.data("x") == 14) {
-        if (position.data("y") == 0) {
-            dirs[0] = Directions.GAUCHE;
-            dirs[1] = Directions.BAS;
-        } else if (position.data("y") == 9) {
-            dirs[0] = Directions.GAUCHE;
-            dirs[1] = Directions.HAUT;
-        } else {
-            dirs[0] = Directions.GAUCHE;
-            dirs[1] = Directions.BAS;
-            dirs[2] = Directions.HAUT;
-        }
-    } else if (position.data("y") == 0){
-        dirs[0] = Directions.GAUCHE;
-        dirs[1] = Directions.BAS;
-        dirs[2] = Directions.DROIT;
-    } else if(position.data("y") == 9){
-        dirs[0] = Directions.GAUCHE;
-        dirs[1] = Directions.HAUT;
-        dirs[2] = Directions.DROIT;
-    } else {
-        dirs[0] = Directions.DROIT;
-        dirs[1] = Directions.BAS;
-        dirs[2] = Directions.HAUT;
-        dirs[3] = Directions.GAUCHE;
+    if(position.data("x") > 0){
+        dirs.append(Directions.GAUCHE);
     }
+    // changer le 14 par maxColonne
+    if(position.data("x" < 14)){
+        dirs.append(Directions.DROIT);
+    }
+    if(position.data("y") > 0){
+        dirs.append(Directions.HAUT);
+    }
+    // changer le 9 en maxLigne
+    if(position.data("y") < 9){
+        dirs.append(Directions.BAS);
+    }
+    
     return dirs;
 }
 
