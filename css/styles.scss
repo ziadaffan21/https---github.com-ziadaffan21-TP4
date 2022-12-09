@@ -8,8 +8,11 @@ header {
     }
 }
 
-button {
+#demarrer {
     @extend .btn, .btn-primary;
+}
+#arrter{
+    @extend .btn, .btn-danger;
 }
 
 #jeu {
