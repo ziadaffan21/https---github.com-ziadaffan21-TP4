@@ -75,7 +75,7 @@ function getNouvellePosition(position, direction) {
 function gererAttaque(posAttaquant, posVictime) {
 
     // TODO
-    let forceAttaque = entierAleatoire(0, posAttaquant.dommage);
+    //let forceAttaque = entierAleatoire(0, posAttaquant.dommage);
 
 }
 
