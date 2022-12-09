@@ -20,18 +20,18 @@ function getDirectionsPossibles(position) {
     const dirs = [];
 
     if(position.data("x") > 0){
-        dirs.append(Directions.GAUCHE);
+        dirs.push(Directions.GAUCHE);
     }
     // changer le 14 par maxColonne
-    if(position.data("x" < 14)){
-        dirs.append(Directions.DROIT);
+    if(position.data("x") < 14){
+        dirs.push(Directions.DROIT);
     }
     if(position.data("y") > 0){
-        dirs.append(Directions.HAUT);
+        dirs.push(Directions.HAUT);
     }
     // changer le 9 en maxLigne
     if(position.data("y") < 9){
-        dirs.append(Directions.BAS);
+        dirs.push(Directions.BAS);
     }
     
     return dirs;
