@@ -33,13 +33,22 @@ function gererClavier(evenement) {
     }
 }
 
-
+let min = null;
 /**
- * Gère le bouton Démarrer/Pause
+ * Gère le bouton Démarrer
  */
 function gererBoutonDemarrer() {
     // TODO
-    faireAvancerLesMechants();
+    posJoueur = $(".joueur");
+    min = setInterval(faireAvancerLesMechants,1000);
+}
+
+/**
+ * Gère le button Arreter
+ */
+function gererBoutonArreter(){
+    posJoueur = null;
+    clearInterval(min);
 }
 
 
@@ -58,7 +67,7 @@ function initialisation() {
 
 
     $("#demarrer").click(gererBoutonDemarrer);
-
+    $("#arrter").click(gererBoutonArreter);
     $(document).keydown(gererClavier);
 }
 
