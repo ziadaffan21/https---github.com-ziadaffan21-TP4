@@ -19,45 +19,62 @@ let jeu = null;
 function getDirectionsPossibles(position) {
     const dirs = [];
 
-    if (position.data("x") == 0) {
-        if (position.data("y") == 0) {
-            dirs[0] = Directions.DROIT;
-            dirs[1] = Directions.BAS;
-        } else if (position.data("y") == 9) {
-            dirs[0] = Directions.DROIT;
-            dirs[1] = Directions.HAUT;
-        } else {
-            dirs[0] = Directions.DROIT;
-            dirs[1] = Directions.BAS;
-            dirs[2] = Directions.HAUT;
-        }
-    } 
-    else if (position.data("x") == 14) {
-        if (position.data("y") == 0) {
-            dirs[0] = Directions.GAUCHE;
-            dirs[1] = Directions.BAS;
-        } else if (position.data("y") == 9) {
-            dirs[0] = Directions.GAUCHE;
-            dirs[1] = Directions.HAUT;
-        } else {
-            dirs[0] = Directions.GAUCHE;
-            dirs[1] = Directions.BAS;
-            dirs[2] = Directions.HAUT;
-        }
-    } else if (position.data("y") == 0){
-        dirs[0] = Directions.GAUCHE;
-        dirs[1] = Directions.BAS;
-        dirs[2] = Directions.DROIT;
-    } else if(position.data("y") == 9){
-        dirs[0] = Directions.GAUCHE;
-        dirs[1] = Directions.HAUT;
-        dirs[2] = Directions.DROIT;
-    } else {
-        dirs[0] = Directions.DROIT;
-        dirs[1] = Directions.BAS;
-        dirs[2] = Directions.HAUT;
-        dirs[3] = Directions.GAUCHE;
+    dirs.push(Directions.BAS, Directions.DROIT, Directions.GAUCHE, Directions.HAUT);
+
+    if(position.data("x") == 0){
+        dirs.remove(Directions.GAUCHE);
     }
+    // changer en maxColonnes
+    if(position.data("x") == 14){
+        dirs.delete(Directions.DROIT);
+    }
+    if(position.data("y") == 0){
+        dirs.delete(Directions.HAUT);
+    }
+    // changer en maxLigne
+    if(position.data("y") == 9){
+        dirs.delete(Directions.BAS);
+    }
+
+    // if (position.data("x") == 0) {
+    //     if (position.data("y") == 0) {
+    //         dirs[0] = Directions.DROIT;
+    //         dirs[1] = Directions.BAS;
+    //     } else if (position.data("y") == 9) {
+    //         dirs[0] = Directions.DROIT;
+    //         dirs[1] = Directions.HAUT;
+    //     } else {
+    //         dirs[0] = Directions.DROIT;
+    //         dirs[1] = Directions.BAS;
+    //         dirs[2] = Directions.HAUT;
+    //     }
+    // } 
+    // else if (position.data("x") == 14) {
+    //     if (position.data("y") == 0) {
+    //         dirs[0] = Directions.GAUCHE;
+    //         dirs[1] = Directions.BAS;
+    //     } else if (position.data("y") == 9) {
+    //         dirs[0] = Directions.GAUCHE;
+    //         dirs[1] = Directions.HAUT;
+    //     } else {
+    //         dirs[0] = Directions.GAUCHE;
+    //         dirs[1] = Directions.BAS;
+    //         dirs[2] = Directions.HAUT;
+    //     }
+    // } else if (position.data("y") == 0){
+    //     dirs[0] = Directions.GAUCHE;
+    //     dirs[1] = Directions.BAS;
+    //     dirs[2] = Directions.DROIT;
+    // } else if(position.data("y") == 9){
+    //     dirs[0] = Directions.GAUCHE;
+    //     dirs[1] = Directions.HAUT;
+    //     dirs[2] = Directions.DROIT;
+    // } else {
+    //     dirs[0] = Directions.DROIT;
+    //     dirs[1] = Directions.BAS;
+    //     dirs[2] = Directions.HAUT;
+    //     dirs[3] = Directions.GAUCHE;
+    // }
     return dirs;
 }
 
@@ -127,6 +144,7 @@ function faireAvancerSiPossible(position, classe, direction) {
     let newPos = null;
     let positionPossible = getNouvellePosition(position, direction);
     let listDirPossible = getDirectionsPossibles(position);
+
     // TODO
     for (let i = 0; i < listDirPossible.length; i++) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {

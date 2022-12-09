@@ -39,17 +39,18 @@ let min = null;
  */
 function gererBoutonDemarrer() {
     // TODO
-    posJoueur = $(".joueur");
-    min = setInterval(faireAvancerLesMechants,1000);
+    let btn = $("#demarrer");
+    if (btn.text() === "Démarrer") {
+        posJoueur = $(".joueur");
+        min = setInterval(faireAvancerLesMechants, 1000);
+        btn.text("Arreter");
+    } else {
+        btn.text("Démarrer");
+        clearInterval(min);
+    }
+
 }
 
-/**
- * Gère le button Arreter
- */
-function gererBoutonArreter(){
-    posJoueur = null;
-    clearInterval(min);
-}
 
 
 /**
@@ -67,7 +68,6 @@ function initialisation() {
 
 
     $("#demarrer").click(gererBoutonDemarrer);
-    $("#arrter").click(gererBoutonArreter);
     $(document).keydown(gererClavier);
 }
 
