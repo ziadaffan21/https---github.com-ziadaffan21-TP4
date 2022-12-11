@@ -22,15 +22,13 @@ function getDirectionsPossibles(position) {
     if(position.data("x") > 0){
         dirs.push(Directions.GAUCHE);
     }
-    // changer le 14 par maxColonne
-    if(position.data("x") < 14){
+    if(position.data("x") < configDeJeu.taille.x){
         dirs.push(Directions.DROIT);
     }
     if(position.data("y") > 0){
         dirs.push(Directions.HAUT);
     }
-    // changer le 9 en maxLigne
-    if(position.data("y") < 9){
+    if(position.data("y") < configDeJeu.taille.y){
         dirs.push(Directions.BAS);
     }
     
@@ -68,6 +66,23 @@ function getNouvellePosition(position, direction) {
 }
 
 /**
+ * Verification si fin de partie.
+ */
+ function gererFinPartie(){
+    // verifier nombre de mechant
+    // si nombre de mechant > 0  et joueur.vie < 0
+        // demander stopper le deplacement des mechants
+        // demander si rejouer
+            // si oui "creer jeu"
+            //garder score ? 
+    // si nombre de mechant <= 0 et joueur.vie > 0
+        // donner les stats
+        // demander si rejouer
+            // si oui "creer jeu "
+            // garder les scores ?
+}
+
+/**
  * Gère l'attaque de attaquant sur sa victime
  * @param {*} posAttaquant L'attaquant
  * @param {*} posVictime La victime
@@ -75,7 +90,23 @@ function getNouvellePosition(position, direction) {
 function gererAttaque(posAttaquant, posVictime) {
 
     // TODO
-    //let forceAttaque = entierAleatoire(0, posAttaquant.dommage);
+    let forceAttaque = entierAleatoire(0, posAttaquant.dommage);
+    if(forceAttaque > posVictime.armure){
+        posVictime.vie--;
+    }
+    if(posVictime.vie <= 0){
+        posAttaquant.dommage++;
+        posAttaquant.or += posVictime.or; 
+        if(posVictime.classe == "mechant"){
+            //disparition du mechant avec effet ?
+            posVictime.removeClass(posVictime.classe);
+            posVictime.removeData("personnage");
+            gererFinPartie();
+        }
+        if(posVictime == "joueur"){
+            gererFinPartie();
+        }
+    }
 
 }
 
@@ -89,7 +120,9 @@ function gererCombat(pos1, pos2) {
     gererAttaque(pos1, pos2);
 
     // TODO : vérifier pos2 est encore vivant. Si oui :
-    gererAttaque(pos2, pos1);
+    if(pos2.vie > 0){
+        gererAttaque(pos2, pos1);
+    }
 }
 
 
@@ -115,7 +148,7 @@ function faireAvancerSiPossible(position, classe, direction) {
             positionPossible.addClass(classe);
             newPos = positionPossible;
             return newPos;
-        } else {
+        } else if (direction === listDirPossible[i] && (positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
             gererCombat();
         }
     }
@@ -133,8 +166,6 @@ function faireAvancerLesMechants() {
             $(m), "mechant", entierAleatoire(Directions.MIN, Directions.MAX));
     }
 }
-
-
 
 /**
  * Créer la planche de jeu.
