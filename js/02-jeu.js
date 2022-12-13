@@ -141,8 +141,9 @@ function gererAttaque(posAttaquant, posVictime) {
         posVictime.removeData("personnage");
         //gererFinPartie();
     }
-
-    changerValeur();
+    if ((posVictime.classe == "joueur" || posAttaquant.classe == "joueur") && forceAttaque > dataVictime.armure) {
+        changerValeur();
+    }
     gererFinPartie();
 
 
