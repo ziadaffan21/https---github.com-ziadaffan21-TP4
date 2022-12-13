@@ -7,16 +7,13 @@ header {
         @extend .display-5;
     }
 }
-
-#demarrer {
-    @extend .btn, .btn-primary;
-}
-#arrter{
-    @extend .btn, .btn-danger;
+body{
+    @extend .container;
 }
 
 #jeu {
     margin: auto;
+
 
     .ligne {
         height: 50px;

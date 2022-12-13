@@ -22,13 +22,13 @@ function getDirectionsPossibles(position) {
     if (position.data("x") > 0) {
         dirs.push(Directions.GAUCHE);
     }
-    if (position.data("x") < configDeJeu.taille.x) {
+    if (position.data("x") < configDeJeu.taille.x - 1) {
         dirs.push(Directions.DROIT);
     }
     if (position.data("y") > 0) {
         dirs.push(Directions.HAUT);
     }
-    if (position.data("y") < configDeJeu.taille.y) {
+    if (position.data("y") < configDeJeu.taille.y - 1) {
         dirs.push(Directions.BAS);
     }
 
@@ -98,10 +98,10 @@ function gererAttaque(posAttaquant, posVictime) {
     }
     if (dataVictime.vie <= 0) {
         dataPersonnage.dommage++;
-        dataPersonnage.or += posVictime.or;
+        dataPersonnage.or += dataVictime.or;
         if (dataVictime.classe == "mechant") {
             //disparition du mechant avec effet ?
-            dataVictime.removeClass(posVictime.classe);
+            posVictime.removeClass(dataVictime.classe);
             dataVictime.removeData("personnage");
             gererFinPartie();
         }

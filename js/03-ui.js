@@ -44,8 +44,10 @@ function gererBoutonDemarrer() {
         posJoueur = $(".joueur");
         min = setInterval(faireAvancerLesMechants, 1000);
         btn.text("Arreter");
+        btn.attr("class","btn btn-danger");
     } else {
         btn.text("Démarrer");
+        btn.attr("class","btn btn-primary");
         clearInterval(min);
     }
 
