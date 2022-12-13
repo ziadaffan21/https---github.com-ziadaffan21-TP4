@@ -10,6 +10,27 @@
 
 let jeu = null;
 
+/**
+ * Créer la planche de jeu.
+ */
+function creerJeu() {
+    jeu = $("#jeu");
+    let divLigne;
+    let champ;
+    // TODO
+    for (let i = 0; i < configDeJeu.taille.y; i++) {
+
+        divLigne = $('<div class="ligne"></div>');
+        jeu.append(divLigne);
+        for (let j = 0; j < configDeJeu.taille.x; j++) {
+            champ = $('<div></div>');
+            champ.data("x", j);
+            champ.data("y", i);
+            divLigne.append(champ);
+        }
+    }
+
+}
 
 /**
  * Retourne la liste des directions possibles.
@@ -71,6 +92,11 @@ function getNouvellePosition(position, direction) {
 function gererFinPartie() {
     // verifier nombre de mechant
     // si nombre de mechant > 0  et joueur.vie < 0
+    let mechant = $(".mechant");
+    let joueur = $(".joueur");
+    if (mechant.length > 0 && joueur.data("personnage").vie < 0) {
+
+    }
     // demander stopper le deplacement des mechants
     // demander si rejouer
     // si oui "creer jeu"
@@ -82,6 +108,16 @@ function gererFinPartie() {
     // garder les scores ?
 }
 
+// eslint-disable-next-line require-jsdoc
+function changerValeur() {
+    let joueur = jeu.find(".joueur");
+    $("#vie").empty().append("Vie :" + joueur.data("personnage").vie);
+    $("#armure").empty().append("Armure :" + joueur.data("personnage").armure);
+    $("#or").empty().append("Or :" + joueur.data("personnage").or);
+    $("#power").empty().append("Power :" + joueur.data("personnage").dommage);
+
+}
+
 /**
  * Gère l'attaque de attaquant sur sa victime
  * @param {*} posAttaquant L'attaquant
@@ -90,25 +126,25 @@ function gererFinPartie() {
 function gererAttaque(posAttaquant, posVictime) {
 
     // TODO
-    let dataPersonnage = posAttaquant.data("personnage");
+    let dataAttanquant = posAttaquant.data("personnage");
     let dataVictime = posVictime.data("personnage");
-    let forceAttaque = entierAleatoire(0, dataPersonnage.dommage);
+    let forceAttaque = entierAleatoire(0, dataAttanquant.dommage);
     if (forceAttaque > dataVictime.armure) {
         dataVictime.vie -= forceAttaque;
     }
+
     if (dataVictime.vie <= 0) {
-        dataPersonnage.dommage++;
-        dataPersonnage.or += dataVictime.or;
-        if (dataVictime.classe == "mechant") {
-            //disparition du mechant avec effet ?
-            posVictime.removeClass(dataVictime.classe);
-            dataVictime.removeData("personnage");
-            gererFinPartie();
-        }
-        if (posVictime == "joueur") {
-            gererFinPartie();
-        }
+        dataAttanquant.dommage++;
+        dataAttanquant.or += dataVictime.or;
+        //disparition du mechant avec effet ?
+        posVictime.removeClass(dataVictime.classe);
+        posVictime.removeData("personnage");
+        //gererFinPartie();
     }
+
+    changerValeur();
+    gererFinPartie();
+
 
 }
 
@@ -169,27 +205,7 @@ function faireAvancerLesMechants() {
     }
 }
 
-/**
- * Créer la planche de jeu.
- */
-function creerJeu() {
-    jeu = $("#jeu");
-    let divLigne;
-    let champ;
-    // TODO
-    for (let i = 0; i < configDeJeu.taille.y; i++) {
 
-        divLigne = $('<div class="ligne"></div>');
-        jeu.append(divLigne);
-        for (let j = 0; j < configDeJeu.taille.x; j++) {
-            champ = $('<div></div>');
-            champ.data("x", j);
-            champ.data("y", i);
-            divLigne.append(champ);
-        }
-    }
-
-}
 
 /**
  * Retourne un nouveau personnage.
@@ -233,6 +249,10 @@ function placerAleatoirement(classe) {
             div.data("personnage", lePerso);
         }
     }
+    $("#vie").empty().append("Vie :" + jeu.find(".joueur").data("personnage").vie);
+    $("#armure").empty().append("Armure :" + jeu.find(".joueur").data("personnage").armure);
+    $("#or").empty().append("Or :" + jeu.find(".joueur").data("personnage").or);
+    $("#power").empty().append("Power :" + jeu.find(".joueur").data("personnage").dommage);
 
     return newPos;
 }
