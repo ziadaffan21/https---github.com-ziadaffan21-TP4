@@ -34,6 +34,7 @@ function gererClavier(evenement) {
 }
 
 let min = null;
+
 /**
  * Gère le bouton Démarrer
  */
@@ -43,11 +44,15 @@ function gererBoutonDemarrer() {
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
         min = setInterval(faireAvancerLesMechants, 1000);
+        $(document).keydown(gererClavier);
+
         btn.text("Arreter");
         btn.attr("class","btn btn-danger");
     } else {
         btn.text("Démarrer");
         btn.attr("class","btn btn-primary");
+        $(document).off("keydown",gererClavier);
+
         clearInterval(min);
     }
 
@@ -71,7 +76,6 @@ function initialisation() {
 
 
     $("#demarrer").click(gererBoutonDemarrer);
-    $(document).keydown(gererClavier);
 }
 
 $(document).ready(initialisation);

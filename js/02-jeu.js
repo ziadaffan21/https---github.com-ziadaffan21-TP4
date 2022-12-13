@@ -5,7 +5,7 @@
 "use strict";
 
 /* eslint-disable no-unused-vars */
-/* global Directions Data entierAleatoire configDeJeu */
+/* global Directions Data entierAleatoire configDeJeu min gererClavier*/
 
 
 let jeu = null;
@@ -29,6 +29,30 @@ function creerJeu() {
             divLigne.append(champ);
         }
     }
+
+}
+/**
+ * Verification si fin de partie.
+ */
+function gererFinPartie() {
+    // verifier nombre de mechant
+    // si nombre de mechant > 0  et joueur.vie < 0
+    let mechant = $(".mechant");
+    let joueur = $(".joueur");
+    if (mechant.length == 0 || joueur.length == 0) {
+        clearInterval(min);
+        $(document).off("keydown",gererClavier);
+    }
+
+    // demander stopper le deplacement des mechants
+    // demander si rejouer
+    // si oui "creer jeu"
+    //garder score ? 
+    // si nombre de mechant <= 0 et joueur.vie > 0
+    // donner les stats
+    // demander si rejouer
+    // si oui "creer jeu "
+    // garder les scores ?
 
 }
 
@@ -86,35 +110,20 @@ function getNouvellePosition(position, direction) {
     return newPos;
 }
 
-/**
- * Verification si fin de partie.
- */
-function gererFinPartie() {
-    // verifier nombre de mechant
-    // si nombre de mechant > 0  et joueur.vie < 0
-    let mechant = $(".mechant");
-    let joueur = $(".joueur");
-    if (mechant.length > 0 && joueur.data("personnage").vie < 0) {
 
-    }
-    // demander stopper le deplacement des mechants
-    // demander si rejouer
-    // si oui "creer jeu"
-    //garder score ? 
-    // si nombre de mechant <= 0 et joueur.vie > 0
-    // donner les stats
-    // demander si rejouer
-    // si oui "creer jeu "
-    // garder les scores ?
-}
 
 // eslint-disable-next-line require-jsdoc
 function changerValeur() {
     let joueur = jeu.find(".joueur");
-    $("#vie").empty().append("Vie :" + joueur.data("personnage").vie);
-    $("#armure").empty().append("Armure :" + joueur.data("personnage").armure);
-    $("#or").empty().append("Or :" + joueur.data("personnage").or);
-    $("#power").empty().append("Power :" + joueur.data("personnage").dommage);
+    if (joueur.data("personnage").vie > 0) {
+        $("#vie").empty().append("Vie :" + joueur.data("personnage").vie);
+        $("#armure").empty().append("Armure :" + joueur.data("personnage").armure);
+        $("#or").empty().append("Or :" + joueur.data("personnage").or);
+        $("#power").empty().append("Power :" + joueur.data("personnage").dommage);
+    }
+    else {
+        $("#vie").empty().append("Vie : 0");
+    }
 
 }
 
@@ -131,6 +140,9 @@ function gererAttaque(posAttaquant, posVictime) {
     let forceAttaque = entierAleatoire(0, dataAttanquant.dommage);
     if (forceAttaque > dataVictime.armure) {
         dataVictime.vie -= forceAttaque;
+        if (dataAttanquant.classe == "joueur" || dataVictime.classe == "joueur") {
+            changerValeur();
+        }
     }
 
     if (dataVictime.vie <= 0) {
@@ -139,13 +151,7 @@ function gererAttaque(posAttaquant, posVictime) {
         //disparition du mechant avec effet ?
         posVictime.removeClass(dataVictime.classe);
         posVictime.removeData("personnage");
-        //gererFinPartie();
     }
-    if ((posVictime.classe == "joueur" || posAttaquant.classe == "joueur") && forceAttaque > dataVictime.armure) {
-        changerValeur();
-    }
-    gererFinPartie();
-
 
 }
 
@@ -162,6 +168,7 @@ function gererCombat(pos1, pos2) {
     if (pos2.vie > 0) {
         gererAttaque(pos2, pos1);
     }
+    gererFinPartie();
 }
 
 
