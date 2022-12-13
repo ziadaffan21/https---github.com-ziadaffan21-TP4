@@ -19,19 +19,19 @@ let jeu = null;
 function getDirectionsPossibles(position) {
     const dirs = [];
 
-    if(position.data("x") > 0){
+    if (position.data("x") > 0) {
         dirs.push(Directions.GAUCHE);
     }
-    if(position.data("x") < configDeJeu.taille.x){
+    if (position.data("x") < configDeJeu.taille.x) {
         dirs.push(Directions.DROIT);
     }
-    if(position.data("y") > 0){
+    if (position.data("y") > 0) {
         dirs.push(Directions.HAUT);
     }
-    if(position.data("y") < configDeJeu.taille.y){
+    if (position.data("y") < configDeJeu.taille.y) {
         dirs.push(Directions.BAS);
     }
-    
+
     return dirs;
 }
 
@@ -68,18 +68,18 @@ function getNouvellePosition(position, direction) {
 /**
  * Verification si fin de partie.
  */
- function gererFinPartie(){
+function gererFinPartie() {
     // verifier nombre de mechant
     // si nombre de mechant > 0  et joueur.vie < 0
-        // demander stopper le deplacement des mechants
-        // demander si rejouer
-            // si oui "creer jeu"
-            //garder score ? 
+    // demander stopper le deplacement des mechants
+    // demander si rejouer
+    // si oui "creer jeu"
+    //garder score ? 
     // si nombre de mechant <= 0 et joueur.vie > 0
-        // donner les stats
-        // demander si rejouer
-            // si oui "creer jeu "
-            // garder les scores ?
+    // donner les stats
+    // demander si rejouer
+    // si oui "creer jeu "
+    // garder les scores ?
 }
 
 /**
@@ -90,20 +90,22 @@ function getNouvellePosition(position, direction) {
 function gererAttaque(posAttaquant, posVictime) {
 
     // TODO
-    let forceAttaque = entierAleatoire(0, posAttaquant.dommage);
-    if(forceAttaque > posVictime.armure){
-        posVictime.vie--;
+    let dataPersonnage = posAttaquant.data("personnage");
+    let dataVictime = posVictime.data("personnage");
+    let forceAttaque = entierAleatoire(0, dataPersonnage.dommage);
+    if (forceAttaque > dataVictime.armure) {
+        dataVictime.vie -= forceAttaque;
     }
-    if(posVictime.vie <= 0){
-        posAttaquant.dommage++;
-        posAttaquant.or += posVictime.or; 
-        if(posVictime.classe == "mechant"){
+    if (dataVictime.vie <= 0) {
+        dataPersonnage.dommage++;
+        dataPersonnage.or += posVictime.or;
+        if (dataVictime.classe == "mechant") {
             //disparition du mechant avec effet ?
-            posVictime.removeClass(posVictime.classe);
-            posVictime.removeData("personnage");
+            dataVictime.removeClass(posVictime.classe);
+            dataVictime.removeData("personnage");
             gererFinPartie();
         }
-        if(posVictime == "joueur"){
+        if (posVictime == "joueur") {
             gererFinPartie();
         }
     }
@@ -120,7 +122,7 @@ function gererCombat(pos1, pos2) {
     gererAttaque(pos1, pos2);
 
     // TODO : vérifier pos2 est encore vivant. Si oui :
-    if(pos2.vie > 0){
+    if (pos2.vie > 0) {
         gererAttaque(pos2, pos1);
     }
 }
@@ -149,7 +151,7 @@ function faireAvancerSiPossible(position, classe, direction) {
             newPos = positionPossible;
             return newPos;
         } else if (direction === listDirPossible[i] && (positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
-            gererCombat();
+            gererCombat(position, positionPossible);
         }
     }
     return null;
