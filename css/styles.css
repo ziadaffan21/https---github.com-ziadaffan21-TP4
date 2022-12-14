@@ -766,7 +766,7 @@ progress {
   width: 33.33333333%;
 }
 
-.col-5 {
+.col-5, #caracteristiques {
   flex: 0 0 auto;
   width: 41.66666667%;
 }
@@ -8012,7 +8012,7 @@ textarea.form-control-lg {
   margin-bottom: 1.5rem !important;
 }
 
-.my-5 {
+.my-5, footer, #jeu {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
 }
@@ -8082,7 +8082,7 @@ textarea.form-control-lg {
   margin-bottom: 0 !important;
 }
 
-.mb-1 {
+.mb-1, footer p {
   margin-bottom: 0.25rem !important;
 }
 
@@ -8146,7 +8146,7 @@ textarea.form-control-lg {
   padding: 0.5rem !important;
 }
 
-.p-3 {
+.p-3, #caracteristiques {
   padding: 1rem !important;
 }
 
@@ -8238,7 +8238,7 @@ textarea.form-control-lg {
   padding-top: 1.5rem !important;
 }
 
-.pt-5 {
+.pt-5, footer {
   padding-top: 3rem !important;
 }
 
@@ -8422,7 +8422,7 @@ textarea.form-control-lg {
   text-align: right !important;
 }
 
-.text-center {
+.text-center, footer, #jeu {
   text-align: center !important;
 }
 
@@ -8520,7 +8520,7 @@ textarea.form-control-lg {
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-muted {
+.text-muted, footer {
   --bs-text-opacity: 1;
   color: #868e96 !important;
 }
@@ -11286,8 +11286,17 @@ textarea.form-control-lg {
 }
 #jeu .ligne .vie_sup {
   background-image: url(../images/vie-sup.png);
+  background-color: green;
 }
 
 #selectable .ui-selected {
   background: --bs-primary;
+}
+
+h3 {
+  text-align: center;
+}
+
+#caracteristiques {
+  border: 5px solid black;
 }/*# sourceMappingURL=styles.css.map */

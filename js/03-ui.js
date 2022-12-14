@@ -44,7 +44,7 @@ function gererBoutonDemarrer() {
 
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
-        min = setInterval(faireAvancerLesMechants, 100);//1000
+        min = setInterval(faireAvancerLesMechants, 1000);//1000
         $(document).keydown(gererClavier);
 
         btn.text("Arreter");

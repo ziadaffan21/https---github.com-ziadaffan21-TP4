@@ -139,13 +139,13 @@ function placerVieSup(){
 function changerValeur() {
     let joueur = jeu.find(".joueur");
     if (joueur.data("personnage").vie > 0) {
-        $("#vie").empty().append("Vie : " + joueur.data("personnage").vie);
-        $("#armure").empty().append("Armure : " + joueur.data("personnage").armure);
-        $("#or").empty().append("Or : " + joueur.data("personnage").or);
-        $("#power").empty().append("Power : " + joueur.data("personnage").dommage);
+        $("#vie").empty().append(joueur.data("personnage").vie);
+        $("#armure").empty().append(joueur.data("personnage").armure);
+        $("#or").empty().append(joueur.data("personnage").or);
+        $("#power").empty().append(joueur.data("personnage").dommage);
     }
     else {
-        $("#vie").empty().append("Vie : 0");
+        $("#vie").empty().append("0");
     }
 
 }
@@ -174,6 +174,8 @@ function gererAttaque(posAttaquant, posVictime) {
         //disparition du mechant avec effet ?
         posVictime.removeClass(dataVictime.classe);
         posVictime.removeData("personnage");
+        changerValeur();
+
     }
 
 }
@@ -212,7 +214,7 @@ function faireAvancerSiPossible(position, classe, direction) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
             if(position.hasClass("joueur") && positionPossible.hasClass("vie_sup")){
                 position.data("personnage").vie += 10;
-                $("#vie").empty().append("Vie : " + position.data("personnage").vie);
+                $("#vie").empty().append(position.data("personnage").vie);
                 positionPossible.removeClass("vie_sup");
             }
             let lePersoData = $(position).data("personnage");
@@ -284,10 +286,10 @@ function placerAleatoirement(classe) {
             div.data("personnage", lePerso);
         }
     }
-    $("#vie").empty().append("Vie :" + jeu.find(".joueur").data("personnage").vie);
-    $("#armure").empty().append("Armure :" + jeu.find(".joueur").data("personnage").armure);
-    $("#or").empty().append("Or :" + jeu.find(".joueur").data("personnage").or);
-    $("#power").empty().append("Power :" + jeu.find(".joueur").data("personnage").dommage);
+    $("#vie").empty().append(jeu.find(".joueur").data("personnage").vie);
+    $("#armure").empty().append(jeu.find(".joueur").data("personnage").armure);
+    $("#or").empty().append(jeu.find(".joueur").data("personnage").or);
+    $("#power").empty().append(jeu.find(".joueur").data("personnage").dommage);
 
     return newPos;
 }
