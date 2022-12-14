@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* global Directions faireAvancerSiPossible faireAvancerLesMechants creerJeu placerAleatoirement */
+/* global Directions faireAvancerSiPossible faireAvancerLesMechants creerJeu placerAleatoirement placerVieSup */
 
 const configDeJeu = {
     taille: {
@@ -41,9 +41,10 @@ let min = null;
 function gererBoutonDemarrer() {
     // TODO
     let btn = $("#demarrer");
+
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
-        min = setInterval(faireAvancerLesMechants, 1000);
+        min = setInterval(faireAvancerLesMechants, 100);//1000
         $(document).keydown(gererClavier);
 
         btn.text("Arreter");
@@ -74,6 +75,8 @@ function initialisation() {
     console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
     console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
 
+    // a placer au premier demarrer
+    setTimeout(placerVieSup, 10000);
 
     $("#demarrer").click(gererBoutonDemarrer);
 }

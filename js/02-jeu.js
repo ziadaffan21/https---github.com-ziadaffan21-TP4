@@ -35,16 +35,21 @@ function creerJeu() {
  * Verification si fin de partie.
  */
 function gererFinPartie() {
-    // verifier nombre de mechant
-    // si nombre de mechant > 0  et joueur.vie < 0
+
     let mechant = $(".mechant");
     let joueur = $(".joueur");
     if (mechant.length == 0 || joueur.length == 0) {
         clearInterval(min);
         $(document).off("keydown",gererClavier);
     }
+    if(mechant.length == 0){
+        alert("Bravo !");
+    }
+    if(joueur.length == 0){
+        alert("Rejouer pour gagner !");
+    }
 
-    // demander stopper le deplacement des mechants
+
     // demander si rejouer
     // si oui "creer jeu"
     //garder score ? 
@@ -110,16 +115,34 @@ function getNouvellePosition(position, direction) {
     return newPos;
 }
 
+/**
+ * Methode pour placer une vie supplementaire
+ */
+function placerVieSup(){
+
+    let trouve = false;
+    console.log("placerVieSup");
+    while (!trouve) {
+        let x = entierAleatoire(0, configDeJeu.taille.x - 1);
+        let y = entierAleatoire(0, configDeJeu.taille.y - 1);
+        let div = $(".ligne").eq(y).children().eq(x);
+        if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
+            trouve = true;
+            div.addClass("vie_sup");
+        }
+    }
+}
+
 
 
 // eslint-disable-next-line require-jsdoc
 function changerValeur() {
     let joueur = jeu.find(".joueur");
     if (joueur.data("personnage").vie > 0) {
-        $("#vie").empty().append("Vie :" + joueur.data("personnage").vie);
-        $("#armure").empty().append("Armure :" + joueur.data("personnage").armure);
-        $("#or").empty().append("Or :" + joueur.data("personnage").or);
-        $("#power").empty().append("Power :" + joueur.data("personnage").dommage);
+        $("#vie").empty().append("Vie : " + joueur.data("personnage").vie);
+        $("#armure").empty().append("Armure : " + joueur.data("personnage").armure);
+        $("#or").empty().append("Or : " + joueur.data("personnage").or);
+        $("#power").empty().append("Power : " + joueur.data("personnage").dommage);
     }
     else {
         $("#vie").empty().append("Vie : 0");
@@ -187,6 +210,11 @@ function faireAvancerSiPossible(position, classe, direction) {
     // TODO
     for (let i = 0; i < listDirPossible.length; i++) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
+            if(position.hasClass("joueur") && positionPossible.hasClass("vie_sup")){
+                position.data("personnage").vie += 10;
+                $("#vie").empty().append("Vie : " + position.data("personnage").vie);
+                positionPossible.removeClass("vie_sup");
+            }
             let lePersoData = $(position).data("personnage");
             position.removeData("personnage");
             positionPossible.data("personnage", lePersoData);
