@@ -44,3 +44,9 @@ body{
         }
     }
 }
+
+#selectable{
+    .ui-selected{
+        background: --bs-primary;
+    }
+}

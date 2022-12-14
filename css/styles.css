@@ -11286,4 +11286,8 @@ textarea.form-control-lg {
 }
 #jeu .ligne .vie_sup {
   background-image: url(../images/vie-sup.png);
+}
+
+#selectable .ui-selected {
+  background: --bs-primary;
 }/*# sourceMappingURL=styles.css.map */

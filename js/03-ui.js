@@ -79,6 +79,10 @@ function initialisation() {
     setTimeout(placerVieSup, 10000);
 
     $("#demarrer").click(gererBoutonDemarrer);
+
+
+    $("#selectable").selectable();
+
 }
 
 $(document).ready(initialisation);
