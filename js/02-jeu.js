@@ -133,9 +133,9 @@ function placerVieSup(){
     }
 }
 
-
-
-// eslint-disable-next-line require-jsdoc
+/**
+ * Méthode pour mettre à jour l'affichage des données du joueur
+ */
 function changerValeur() {
     let joueur = jeu.find(".joueur");
     if (joueur.data("personnage").vie > 0) {
@@ -169,8 +169,8 @@ function gererAttaque(posAttaquant, posVictime) {
     }
 
     if (dataVictime.vie <= 0) {
-        dataAttanquant.dommage++;
-        dataAttanquant.or += dataVictime.or;
+        dataAttaquant.dommage++;
+        dataAttaquant.or += dataVictime.or;
         //disparition du mechant avec effet ?
         posVictime.removeClass(dataVictime.classe);
         posVictime.removeData("personnage");
@@ -273,7 +273,6 @@ function placerAleatoirement(classe) {
     let newPos = null;
     let trouve = false;
 
-    // TODO
     while (!trouve) {
         let x = entierAleatoire(0, configDeJeu.taille.x - 1);
         let y = entierAleatoire(0, configDeJeu.taille.y - 1);
