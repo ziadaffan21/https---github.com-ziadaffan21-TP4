@@ -11276,15 +11276,12 @@ textarea.form-control-lg {
   width: 50px;
   min-height: 50px;
   display: inline-block;
-  background-color: green;
   background-image: url(../images/erth.jpg);
 }
 #jeu .ligne .joueur {
-  background-color: red;
   background-image: url(../images/mincraft-per-head.png);
 }
 #jeu .ligne .mechant {
-  background-color: black;
   background-image: url(../images/zombie.jpg);
 }
 #jeu .ligne .vie_sup {
