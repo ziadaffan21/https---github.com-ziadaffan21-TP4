@@ -158,12 +158,12 @@ function changerValeur() {
 function gererAttaque(posAttaquant, posVictime) {
 
     // TODO
-    let dataAttanquant = posAttaquant.data("personnage");
+    let dataAttaquant = posAttaquant.data("personnage");
     let dataVictime = posVictime.data("personnage");
-    let forceAttaque = entierAleatoire(0, dataAttanquant.dommage);
+    let forceAttaque = entierAleatoire(0, dataAttaquant.dommage);
     if (forceAttaque > dataVictime.armure) {
         dataVictime.vie -= forceAttaque;
-        if (dataAttanquant.classe == "joueur" || dataVictime.classe == "joueur") {
+        if (dataAttaquant.classe == "joueur" || dataVictime.classe == "joueur") {
             changerValeur();
         }
     }
