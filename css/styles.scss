@@ -36,10 +36,13 @@ body{
 
         .joueur {
             background-image: url(../images/mincraft-per-head.png);
+            border: 1px solid black;
         }
 
         .mechant {
             background-image: url(../images/zombie.jpg);
+            border: 1px solid black;
+
         }
 
         // apparition voeur vie sup

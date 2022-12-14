@@ -11280,9 +11280,11 @@ textarea.form-control-lg {
 }
 #jeu .ligne .joueur {
   background-image: url(../images/mincraft-per-head.png);
+  border: 1px solid black;
 }
 #jeu .ligne .mechant {
   background-image: url(../images/zombie.jpg);
+  border: 1px solid black;
 }
 #jeu .ligne .vie_sup {
   background-image: url(../images/vie-sup.png);
