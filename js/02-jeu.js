@@ -140,6 +140,7 @@ function changerValeur() {
     }
     if (joueur.data("personnage") != undefined && joueur.data("personnage").vie < 20 && $("#jeu").find(".vie_sup").length < 1) {
         placerVieSup();
+        $("#effetVie20").effect("shake", 500);
     }
 }
 
