@@ -34,6 +34,7 @@ function gererClavier(evenement) {
 }
 
 let min = null;
+let minVie = null;
 
 /**
  * Gère le bouton Démarrer
@@ -45,21 +46,36 @@ function gererBoutonDemarrer() {
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
         min = setInterval(faireAvancerLesMechants, 1000);//1000
+        minVie = setTimeout(placerVieSup, 100);//10000
         $(document).keydown(gererClavier);
-
         btn.text("Arreter");
-        btn.attr("class","btn btn-danger");
+        btn.attr("class", "btn btn-danger");
     } else {
         btn.text("Démarrer");
-        btn.attr("class","btn btn-primary");
-        $(document).off("keydown",gererClavier);
-
+        btn.attr("class", "btn btn-primary");
+        $(document).off("keydown", gererClavier);
         clearInterval(min);
     }
+}
+
+/**
+ * 
+ */
+function gererBoutonRejouer() {
+    $("#jeu").children().replaceWith("");
+    creerJeu();
+    posJoueur = placerAleatoirement("joueur");
+    for (let i = 0; i < configDeJeu.nbMechants; i++) {
+        placerAleatoirement("mechant");
+    }
+    $("#demarrer").text("Démarrer");
+    $("#demarrer").attr("class", "btn btn-primary");
+    $(document).off("keydown", gererClavier);
+    clearTimeout(minVie);
+    clearInterval(min);
 
 
 }
-
 
 
 /**
@@ -75,14 +91,12 @@ function initialisation() {
     console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
     console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
 
-    // a placer au premier demarrer
-    setTimeout(placerVieSup, 10000);
-
     $("#demarrer").click(gererBoutonDemarrer);
-
+    $("#rejouer").click(gererBoutonRejouer);
 
     $("#selectable").selectable();
 
 }
+
 
 $(document).ready(initialisation);
