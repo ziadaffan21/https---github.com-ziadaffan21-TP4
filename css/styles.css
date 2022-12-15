@@ -549,14 +549,14 @@ progress {
     font-size: 3.5rem;
   }
 }
-.display-5, header h1 {
+.display-5 {
   font-size: calc(1.425rem + 2.1vw);
   font-weight: 300;
   line-height: 1.2;
 }
 
 @media (min-width: 1200px) {
-  .display-5, header h1 {
+  .display-5 {
     font-size: 3rem;
   }
 }
@@ -8199,7 +8199,7 @@ textarea.form-control-lg {
   padding-bottom: 0.25rem !important;
 }
 
-.py-2, header {
+.py-2 {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
 }
@@ -8423,7 +8423,7 @@ textarea.form-control-lg {
   text-align: right !important;
 }
 
-.text-center, footer, #jeu {
+.text-center, footer, #jeu, #jeuUtils #button, #jeuUtils #prepaJeu #info, #jeuUtils #prepaJeu #modeJeu ul, #jeuUtils #prepaJeu #modeJeu, header {
   text-align: center !important;
 }
 
@@ -11267,6 +11267,10 @@ textarea.form-control-lg {
   color: #333;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
 body .texte-pour-lecteur {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -11281,23 +11285,15 @@ body .texte-pour-lecteur {
   word-wrap: normal !important;
 }
 
-header {
-  text-align: center;
-}
-#jeuUtils #prepaJeu #modeJeu {
-  text-align: center;
-}
 #jeuUtils #prepaJeu #modeJeu ul {
   list-style-type: none;
-  text-align: center;
   display: block;
-  margin: auto;
 }
 #jeuUtils #prepaJeu #modeJeu #selectable li {
   display: inline-block;
   padding: 5px;
   margin: 5px;
-  max-width: 25%;
+  max-width: 35%;
 }
 #jeuUtils #prepaJeu #modeJeu #selectable li:hover {
   background-color: #efb73e;
@@ -11305,13 +11301,6 @@ header {
 #jeuUtils #prepaJeu #modeJeu #selectable .ui-selected {
   background: #e95420;
 }
-#jeuUtils #prepaJeu #info {
-  text-align: center;
-}
-#jeuUtils #button {
-  text-align: center;
-}
-
 #jeu {
   margin: auto;
 }

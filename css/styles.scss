@@ -2,6 +2,8 @@
 
 body {
     @extend .container;
+    margin : 0;
+    padding : 0;
 
     .texte-pour-lecteur {
         border: 0;
@@ -18,12 +20,7 @@ body {
 }
 
 header {
-    @extend .py-2;
-    text-align: center;
-
-    h1 {
-        @extend .display-5;
-    }
+    @extend .text-center;
 }
 
 #jeuUtils {
@@ -32,13 +29,12 @@ header {
     #prepaJeu {
 
         #modeJeu {
-            text-align: center;
+            @extend .text-center;
 
             ul {
                 list-style-type: none;
-                text-align: center;
+                @extend .text-center;
                 display: block;
-                margin: auto;
             }
 
             #selectable {
@@ -46,7 +42,7 @@ header {
                     display: inline-block;
                     padding: 5px;
                     margin: 5px;
-                    max-width: 25%;
+                    max-width: 35%;
 
                 }
 
@@ -62,12 +58,12 @@ header {
 
         #info {
             @extend .m-5;
-            text-align: center;
+            @extend .text-center;
         }
     }
 
     #button {
-        text-align: center;
+        @extend .text-center;
     }
 }
 
@@ -85,7 +81,6 @@ header {
         height: 50px;
 
         >div {
-            // Une case du jeu
             width: 50px;
             min-height: 50px;
             display: inline-block;
