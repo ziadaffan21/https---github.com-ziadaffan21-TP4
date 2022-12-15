@@ -40,12 +40,12 @@ function gererFinPartie() {
     let joueur = $(".joueur");
     if (mechant.length == 0 || joueur.length == 0) {
         clearInterval(min);
-        $(document).off("keydown",gererClavier);
+        $(document).off("keydown", gererClavier);
     }
-    if(mechant.length == 0){
+    if (mechant.length == 0) {
         alert("Bravo !");
     }
-    if(joueur.length == 0){
+    if (joueur.length == 0) {
         alert("Rejouer pour gagner !");
     }
 
@@ -108,17 +108,18 @@ function getNouvellePosition(position, direction) {
 /**
  * Methode pour placer une vie supplementaire
  */
-function placerVieSup(){
-
-    let trouve = false;
-    console.log("placerVieSup");
-    while (!trouve) {
-        let x = entierAleatoire(0, configDeJeu.taille.x - 1);
-        let y = entierAleatoire(0, configDeJeu.taille.y - 1);
-        let div = $(".ligne").eq(y).children().eq(x);
-        if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
-            trouve = true;
-            div.addClass("vie_sup");
+function placerVieSup() {
+    if ($("#vie").text < 50) {
+        let trouve = false;
+        console.log("placerVieSup");
+        while (!trouve) {
+            let x = entierAleatoire(0, configDeJeu.taille.x - 1);
+            let y = entierAleatoire(0, configDeJeu.taille.y - 1);
+            let div = $(".ligne").eq(y).children().eq(x);
+            if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
+                trouve = true;
+                div.addClass("vie_sup");
+            }
         }
     }
 }
@@ -201,7 +202,7 @@ function faireAvancerSiPossible(position, classe, direction) {
 
     for (let i = 0; i < listDirPossible.length; i++) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
-            if((position.hasClass("joueur")) && positionPossible.hasClass("vie_sup")){
+            if ((position.hasClass("joueur")) && positionPossible.hasClass("vie_sup")) {
                 position.data("personnage").vie += 10;
                 $("#vie").empty().append(position.data("personnage").vie);
                 positionPossible.removeClass("vie_sup");

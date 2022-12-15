@@ -41,14 +41,11 @@ let minVie = null;
  */
 function gererBoutonDemarrer() {
     let btn = $("#demarrer");
-    posJoueur = placerAleatoirement("joueur");
-    for (let i = 0; i < configDeJeu.nbMechants; i++) {
-        placerAleatoirement("mechant");
-    }
+    
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
         min = setInterval(faireAvancerLesMechants, 1000);//1000
-        minVie = setTimeout(placerVieSup, 100);//10000
+        //minVie = setTimeout(placerVieSup, 100);//10000
         $(document).keydown(gererClavier);
         btn.text("Arreter");
         btn.attr("class", "btn btn-danger");
@@ -86,6 +83,11 @@ function gererBoutonRejouer() {
 function initialisation() {
     creerJeu();
 
+    
+    posJoueur = placerAleatoirement("joueur");
+    for (let i = 0; i < configDeJeu.nbMechants; i++) {
+        placerAleatoirement("mechant");
+    }
 
     console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
     console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
@@ -94,7 +96,7 @@ function initialisation() {
     $("#rejouer").click(gererBoutonRejouer);
 
     $("#selectable").selectable();
-
+    $("#vie").change(placerVieSup);
 }
 
 
