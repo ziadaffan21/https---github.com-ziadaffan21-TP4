@@ -114,22 +114,11 @@ function gererBoutonRejouer() {
  */
 function initialisation() {
 
-
-
-    
-    posJoueur = placerAleatoirement("joueur");
-    for (let i = 0; i < configDeJeu.nbMechants; i++) {
-        placerAleatoirement("mechant");
-    }
-
-    console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
-    console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
-
     $("#demarrer").click(gererBoutonDemarrer);
     $("#rejouer").click(gererBoutonRejouer);
 
     $("#selectable").selectable();
-    $("#vie").change(placerVieSup);
+
 }
 
 

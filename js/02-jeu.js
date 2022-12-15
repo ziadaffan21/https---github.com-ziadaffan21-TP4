@@ -109,7 +109,7 @@ function getNouvellePosition(position, direction) {
  * Methode pour placer une vie supplementaire
  */
 function placerVieSup() {
-    if ($("#vie").text < 50) {
+    if ($("#vie").text() < 50) {
         let trouve = false;
         console.log("placerVieSup");
         while (!trouve) {
@@ -134,6 +134,9 @@ function changerValeur() {
         $("#armure").empty().append(joueur.data("personnage").armure);
         $("#or").empty().append(joueur.data("personnage").or);
         $("#power").empty().append(joueur.data("personnage").dommage);
+        if(joueur.data("personnage").vie < 20 && $("#jeu").find(".vie_sup").length < 1){
+            placerVieSup();
+        }
     }
     else {
         $("#vie").empty().append("0");
@@ -181,7 +184,7 @@ function gererCombat(pos1, pos2) {
     gererAttaque(pos1, pos2);
 
     // TODO : vérifier pos2 est encore vivant. Si oui :
-    if (pos2.vie > 0) {
+    if (pos2.data("personnage").vie != undefined) {
         gererAttaque(pos2, pos1);
     }
     gererFinPartie();
