@@ -95,11 +95,7 @@ function gererBoutonDemarrer() {
  */
 function gererBoutonRejouer() {
     $("#jeu").children().replaceWith("");
-    creerJeu();
-    posJoueur = placerAleatoirement("joueur");
-    for (let i = 0; i < configDeJeu.nbMechants; i++) {
-        placerAleatoirement("mechant");
-    }
+    $(".ui-selected").removeClass("ui-selected");
     $("#demarrer").text("Démarrer");
     $("#demarrer").attr("class", "btn btn-primary");
     $(document).off("keydown", gererClavier);
@@ -113,24 +109,10 @@ function gererBoutonRejouer() {
  * Initialisation de la page.
  */
 function initialisation() {
-
-
-
-    
-    posJoueur = placerAleatoirement("joueur");
-    for (let i = 0; i < configDeJeu.nbMechants; i++) {
-        placerAleatoirement("mechant");
-    }
-
-    console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
-    console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
-
     $("#demarrer").click(gererBoutonDemarrer);
     $("#rejouer").click(gererBoutonRejouer);
 
     $("#selectable").selectable();
-    $("#vie").change(placerVieSup);
+    //$("#vie").change(placerVieSup);
 }
-
-
 $(document).ready(initialisation);
