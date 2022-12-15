@@ -55,9 +55,10 @@ body{
 
 #selectable{
     .ui-selected{
-        background: --bs-primary;
+        background: #e95420;
     }
 }
+
 footer {
     @extend .text-center, .text-muted, .pt-5, .my-5;
 
