@@ -40,9 +40,11 @@ let minVie = null;
  * Gère le bouton Démarrer
  */
 function gererBoutonDemarrer() {
-    // TODO
     let btn = $("#demarrer");
-
+    posJoueur = placerAleatoirement("joueur");
+    for (let i = 0; i < configDeJeu.nbMechants; i++) {
+        placerAleatoirement("mechant");
+    }
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
         min = setInterval(faireAvancerLesMechants, 1000);//1000
@@ -83,10 +85,7 @@ function gererBoutonRejouer() {
  */
 function initialisation() {
     creerJeu();
-    posJoueur = placerAleatoirement("joueur");
-    for (let i = 0; i < configDeJeu.nbMechants; i++) {
-        placerAleatoirement("mechant");
-    }
+
 
     console.assert($(".mechant").length === configDeJeu.nbMechants, "Il devrait y avoir tous les méchants");
     console.assert($(".joueur").length === 1, "Il devrait y avoir un seul joueur");
