@@ -17,7 +17,7 @@ function creerJeu() {
     jeu = $("#jeu");
     let divLigne;
     let champ;
-    // TODO
+
     for (let i = 0; i < configDeJeu.taille.y; i++) {
 
         divLigne = $('<div class="ligne"></div>');
@@ -43,10 +43,10 @@ function gererFinPartie() {
         $(document).off("keydown", gererClavier);
     }
     if (mechant.length == 0) {
-        alert("Bravo !");
+        alert("Bravo ! Cliquer sur rejouer.");
     }
     if (joueur.length == 0) {
-        alert("Rejouer pour gagner !");
+        alert("Cliquer sur rejouer pour retenter votre chance !");
     }
 
 }
@@ -109,19 +109,18 @@ function getNouvellePosition(position, direction) {
  * Methode pour placer une vie supplementaire
  */
 function placerVieSup() {
-    if ($("#vie").text()() < 50) {
-        let trouve = false;
-        console.log("placerVieSup");
-        while (!trouve) {
-            let x = entierAleatoire(0, configDeJeu.taille.x - 1);
-            let y = entierAleatoire(0, configDeJeu.taille.y - 1);
-            let div = $(".ligne").eq(y).children().eq(x);
-            if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
-                trouve = true;
-                div.addClass("vie_sup");
-            }
+    let trouve = false;
+    console.log("placerVieSup");
+    while (!trouve) {
+        let x = entierAleatoire(0, configDeJeu.taille.x - 1);
+        let y = entierAleatoire(0, configDeJeu.taille.y - 1);
+        let div = $(".ligne").eq(y).children().eq(x);
+        if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
+            trouve = true;
+            div.addClass("vie_sup");
         }
     }
+
 }
 
 /**
@@ -129,19 +128,19 @@ function placerVieSup() {
  */
 function changerValeur() {
     let joueur = jeu.find(".joueur");
-    if (joueur.data("personnage").vie > 0) {
+    if (joueur.data("personnage") != undefined && joueur.data("personnage").vie > 0) {
         $("#vie").empty().append(joueur.data("personnage").vie);
         $("#armure").empty().append(joueur.data("personnage").armure);
         $("#or").empty().append(joueur.data("personnage").or);
         $("#power").empty().append(joueur.data("personnage").dommage);
-        if(joueur.data("personnage").vie < 20 && $("#jeu").find(".vie_sup").length < 1){
-            placerVieSup();
-        }
+
     }
     else {
         $("#vie").empty().append("0");
     }
-
+    if (joueur.data("personnage") != undefined && joueur.data("personnage").vie < 20 && $("#jeu").find(".vie_sup").length < 1) {
+        placerVieSup();
+    }
 }
 
 /**
@@ -165,12 +164,12 @@ function gererAttaque(posAttaquant, posVictime) {
     if (dataVictime.vie <= 0) {
         dataAttaquant.dommage++;
         dataAttaquant.or += dataVictime.or;
-        //disparition du mechant avec effet ?
         posVictime.removeClass(dataVictime.classe);
         posVictime.removeData("personnage");
         changerValeur();
-
     }
+
+    gererFinPartie();
 
 }
 
@@ -186,7 +185,7 @@ function gererCombat(pos1, pos2) {
     if (pos2.data("personnage") != undefined) {
         gererAttaque(pos2, pos1);
     }
-    gererFinPartie();
+    //gererFinPartie();
 }
 
 
