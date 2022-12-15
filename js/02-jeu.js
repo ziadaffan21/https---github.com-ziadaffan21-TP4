@@ -151,7 +151,6 @@ function changerValeur() {
  */
 function gererAttaque(posAttaquant, posVictime) {
 
-    // TODO
     let dataAttaquant = posAttaquant.data("personnage");
     let dataVictime = posVictime.data("personnage");
     let forceAttaque = entierAleatoire(0, dataAttaquant.dommage);
@@ -165,8 +164,13 @@ function gererAttaque(posAttaquant, posVictime) {
     if (dataVictime.vie <= 0) {
         dataAttaquant.dommage++;
         dataAttaquant.or += dataVictime.or;
+        posVictime.attr("id", "effetHighlight");
+        if(dataVictime.classe == "mechant"){
+            $("#effetHighlight").effect("highlight", 500);
+        }
         posVictime.removeClass(dataVictime.classe);
         posVictime.removeData("personnage");
+        posVictime.removeAttr("id");
         changerValeur();
     }
 
