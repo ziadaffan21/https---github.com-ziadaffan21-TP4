@@ -79,6 +79,7 @@ function gererBoutonDemarrer() {
         posJoueur = $(".joueur");
         min = setInterval(faireAvancerLesMechants, 1000);//1000
         //minVie = setTimeout(placerVieSup, 100);//10000
+        $("#selectable").selectable({"disabled" : true});
         $(document).keydown(gererClavier);
         btn.text("Arreter");
         btn.attr("class", "btn btn-danger");
@@ -98,6 +99,7 @@ function gererBoutonRejouer() {
     $(".ui-selected").removeClass("ui-selected");
     $("#demarrer").text("Démarrer");
     $("#demarrer").attr("class", "btn btn-primary");
+    $("#selectable").selectable({"disabled" : false});
     $(document).off("keydown", gererClavier);
     clearTimeout(minVie);
     clearInterval(min);
