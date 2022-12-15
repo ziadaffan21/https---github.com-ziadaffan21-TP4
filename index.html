@@ -24,21 +24,34 @@
 
 <body>
     <header>
-        <h1>Ms. Mi-Ziad</h1>
+        <h1>
+            <img src="images/Ms.Mi-Ziad.png" alt="logo du jeu miss mi-ziad">
+            <span  class="texte-pour-lecteur">Jeu miss Mi-Ziad.</span>
+        </h1>
     </header>
 
     <main>
-        <div>
-            <p>Choisir le mode de jeu</p>
-            <ul id="selectable">
-                <li class="ui-widget-content">Facile</li>
-                <li class="ui-widget-content">Moyen</li>
-                <li class="ui-widget-content">Difficile</li>
-                <li class="ui-widget-content">Extrême</li>
-            </ul>
+        <div id="jeuUtils">
+            <div id="prepaJeu">
+                <div id="modeJeu">
+                    <p>Choissez votre mode de jeu :</p>
+                    <ul id="selectable">
+                        <li class="ui-widget-content">Facile</li>
+                        <li class="ui-widget-content">Moyen</li>
+                        <li class="ui-widget-content">Difficile</li>
+                        <li class="ui-widget-content">Extrême</li>
+                    </ul>
+                </div>
+                <div id="info">
+                    blabla de victoire ou defaite 
+                </div>
+            </div>
+            <div id="button">
+                <button class="btn btn-primary" id="demarrer">Démarrer</button>
+                <button class="btn btn-primary" id="rejouer">Rejouer</button>
+            </div>
         </div>
-        <button class="btn btn-primary" id="demarrer">Démarrer</button>
-        <button class="btn btn-primary" id="rejouer">Rejouer</button>
+
         <div class="d-flex justify-content-center">
             <div id="caracteristiques">
 

@@ -1,36 +1,94 @@
 @import "bootstrap";
 
+body {
+    @extend .container;
+
+    .texte-pour-lecteur {
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        word-wrap: normal !important;
+    }
+}
+
 header {
-    @extend .py-5;
+    @extend .py-2;
+    text-align: center;
 
     h1 {
         @extend .display-5;
     }
 }
 
-body{
+#jeuUtils {
     @extend .container;
 
+    #prepaJeu {
 
+        #modeJeu {
+            text-align: center;
+
+            ul {
+                list-style-type: none;
+                text-align: center;
+                display: block;
+                margin: auto;
+            }
+
+            #selectable {
+                li {
+                    display: inline-block;
+                    padding: 5px;
+                    margin: 5px;
+                    max-width: 25%;
+
+                }
+
+                li:hover {
+                    background-color: #efb73e;
+                }
+
+                .ui-selected {
+                    background: #e95420;
+                }
+            }
+        }
+
+        #info {
+            @extend .m-5;
+            text-align: center;
+        }
+    }
+
+    #button {
+        text-align: center;
+    }
 }
 
-
-#demarrer, #rejouer{
+#demarrer,
+#rejouer {
     @extend .mb-4;
 }
 
 #jeu {
     margin: auto;
     @extend .text-center;
-    @extend .my-5; 
+    @extend .my-5;
 
     .ligne {
         height: 50px;
+
         >div {
             // Une case du jeu
-            width           : 50px;
-            min-height      : 50px;
-            display         : inline-block;
+            width: 50px;
+            min-height: 50px;
+            display: inline-block;
             background-image: url(../images/erth.jpg);
         }
 
@@ -42,20 +100,12 @@ body{
         .mechant {
             background-image: url(../images/zombie.jpg);
             border: 1px solid black;
-
         }
 
-        // apparition voeur vie sup
         .vie_sup {
             background-image: url(../images/vie-sup.png);
             background-color: green;
         }
-    }
-}
-
-#selectable{
-    .ui-selected{
-        background: #e95420;
     }
 }
 
@@ -66,10 +116,12 @@ footer {
         @extend .mb-1;
     }
 }
-h3{
+
+h3 {
     text-align: center;
 }
-#caracteristiques{
+
+#caracteristiques {
     @extend .col-5;
     border: 5px solid black;
     @extend .p-3;

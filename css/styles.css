@@ -642,7 +642,7 @@ progress {
   color: #868e96;
 }
 
-.container, body,
+.container, #jeuUtils, body,
 .container-fluid,
 .container-xxl,
 .container-xl,
@@ -659,27 +659,27 @@ progress {
 }
 
 @media (min-width: 576px) {
-  .container-sm, .container, body {
+  .container-sm, .container, #jeuUtils, body {
     max-width: 540px;
   }
 }
 @media (min-width: 768px) {
-  .container-md, .container-sm, .container, body {
+  .container-md, .container-sm, .container, #jeuUtils, body {
     max-width: 720px;
   }
 }
 @media (min-width: 992px) {
-  .container-lg, .container-md, .container-sm, .container, body {
+  .container-lg, .container-md, .container-sm, .container, #jeuUtils, body {
     max-width: 960px;
   }
 }
 @media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container, body {
+  .container-xl, .container-lg, .container-md, .container-sm, .container, #jeuUtils, body {
     max-width: 1140px;
   }
 }
 @media (min-width: 1400px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container, body {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container, #jeuUtils, body {
     max-width: 1320px;
   }
 }
@@ -3976,7 +3976,7 @@ textarea.form-control-lg {
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
 
-.navbar > .container, .navbar > body,
+.navbar > .container, .navbar > #jeuUtils, .navbar > body,
 .navbar > .container-fluid,
 .navbar > .container-sm,
 .navbar > .container-md,
@@ -7944,7 +7944,7 @@ textarea.form-control-lg {
   margin: 1.5rem !important;
 }
 
-.m-5 {
+.m-5, #jeuUtils #prepaJeu #info {
   margin: 3rem !important;
 }
 
@@ -8094,7 +8094,8 @@ textarea.form-control-lg {
   margin-bottom: 1rem !important;
 }
 
-.mb-4, #demarrer, #rejouer {
+.mb-4, #demarrer,
+#rejouer {
   margin-bottom: 1.5rem !important;
 }
 
@@ -8198,7 +8199,7 @@ textarea.form-control-lg {
   padding-bottom: 0.25rem !important;
 }
 
-.py-2 {
+.py-2, header {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
 }
@@ -8213,7 +8214,7 @@ textarea.form-control-lg {
   padding-bottom: 1.5rem !important;
 }
 
-.py-5, header {
+.py-5 {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
 }
@@ -11266,6 +11267,51 @@ textarea.form-control-lg {
   color: #333;
 }
 
+body .texte-pour-lecteur {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+header {
+  text-align: center;
+}
+#jeuUtils #prepaJeu #modeJeu {
+  text-align: center;
+}
+#jeuUtils #prepaJeu #modeJeu ul {
+  list-style-type: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+#jeuUtils #prepaJeu #modeJeu #selectable li {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  max-width: 25%;
+}
+#jeuUtils #prepaJeu #modeJeu #selectable li:hover {
+  background-color: #efb73e;
+}
+#jeuUtils #prepaJeu #modeJeu #selectable .ui-selected {
+  background: #e95420;
+}
+#jeuUtils #prepaJeu #info {
+  text-align: center;
+}
+#jeuUtils #button {
+  text-align: center;
+}
+
 #jeu {
   margin: auto;
 }
@@ -11289,10 +11335,6 @@ textarea.form-control-lg {
 #jeu .ligne .vie_sup {
   background-image: url(../images/vie-sup.png);
   background-color: green;
-}
-
-#selectable .ui-selected {
-  background: #e95420;
 }
 
 h3 {
