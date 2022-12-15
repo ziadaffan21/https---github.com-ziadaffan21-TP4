@@ -5,7 +5,7 @@
 "use strict";
 
 /* eslint-disable no-unused-vars */
-/* global Directions Data entierAleatoire configDeJeu min gererClavier*/
+/* global Directions Data entierAleatoire configDeJeu min gererClavier minVie*/
 
 
 let jeu = null;
@@ -48,16 +48,6 @@ function gererFinPartie() {
     if(joueur.length == 0){
         alert("Rejouer pour gagner !");
     }
-
-
-    // demander si rejouer
-    // si oui "creer jeu"
-    //garder score ? 
-    // si nombre de mechant <= 0 et joueur.vie > 0
-    // donner les stats
-    // demander si rejouer
-    // si oui "creer jeu "
-    // garder les scores ?
 
 }
 
@@ -209,10 +199,9 @@ function faireAvancerSiPossible(position, classe, direction) {
     let positionPossible = getNouvellePosition(position, direction);
     let listDirPossible = getDirectionsPossibles(position);
 
-    // TODO
     for (let i = 0; i < listDirPossible.length; i++) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
-            if(position.hasClass("joueur") && positionPossible.hasClass("vie_sup")){
+            if((position.hasClass("joueur")) && positionPossible.hasClass("vie_sup")){
                 position.data("personnage").vie += 10;
                 $("#vie").empty().append(position.data("personnage").vie);
                 positionPossible.removeClass("vie_sup");
@@ -279,7 +268,7 @@ function placerAleatoirement(classe) {
         let x = entierAleatoire(0, configDeJeu.taille.x - 1);
         let y = entierAleatoire(0, configDeJeu.taille.y - 1);
         let div = $(".ligne").eq(y).children().eq(x);
-        if (!(div.hasClass("joueur") || div.hasClass("mechant"))) {
+        if (!(div.hasClass("joueur") || div.hasClass("mechant") || div.hasClass("vie_sup"))) {
             trouve = true;
             div.addClass(classe);
             let lePerso = creerPersonnage(classe);
