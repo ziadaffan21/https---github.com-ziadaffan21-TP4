@@ -19,7 +19,6 @@ function creerJeu() {
     let champ;
 
     for (let i = 0; i < configDeJeu.taille.y; i++) {
-
         divLigne = $('<div class="ligne"></div>');
         jeu.append(divLigne);
         for (let j = 0; j < configDeJeu.taille.x; j++) {
@@ -29,19 +28,19 @@ function creerJeu() {
             divLigne.append(champ);
         }
     }
-
 }
+
 /**
- * 
+ * Méthode pour remonter la page en haut.
  */
 function monterPage() {
     $('html, body').animate({ scrollTop: '0px'}, 500);
 }
+
 /**
- * Verification si fin de partie.
+ * Vérification si c'est la fin de la partie.
  */
 function gererFinPartie() {
-
     let mechant = $(".mechant");
     let joueur = $(".joueur");
     if (mechant.length == 0 || joueur.length == 0) {
@@ -56,7 +55,6 @@ function gererFinPartie() {
         $("#infos").empty().append("Dommage mais bonne nouvelle vous pouvez encore essayer ! <br/> Cliquer sur rejouer pour faire une nouvelle partie.");
         monterPage();
     }
-
 }
 
 /**
@@ -82,7 +80,6 @@ function getDirectionsPossibles(position) {
 
     return dirs;
 }
-
 
 /**
  * Applique la direction sur la position pour obtenir la nouvelle position.
@@ -114,7 +111,7 @@ function getNouvellePosition(position, direction) {
 }
 
 /**
- * Méthode pour placer une vie supplementaire
+ * Méthode pour placer une vie supplementaire.
  */
 function placerVieSup() {
     let trouve = false;
@@ -128,11 +125,10 @@ function placerVieSup() {
             div.addClass("vie_sup");
         }
     }
-
 }
 
 /**
- * Méthode pour mettre à jour l'affichage des données du joueur
+ * Méthode pour mettre à jour l'affichage des données du joueur.
  */
 function changerValeur() {
     let joueur = jeu.find(".joueur");
@@ -141,7 +137,6 @@ function changerValeur() {
         $("#armure").empty().append(joueur.data("personnage").armure);
         $("#or").empty().append(joueur.data("personnage").or);
         $("#power").empty().append(joueur.data("personnage").dommage);
-
     }
     else {
         $("#vie").empty().append("0");
@@ -153,9 +148,9 @@ function changerValeur() {
 }
 
 /**
- * Gère l'attaque entre deux personnages
- * @param {*} posAttaquant L'attaquant
- * @param {*} posVictime La victime
+ * Gére l'attaque entre deux personnages.
+ * @param {*} posAttaquant La division de l'attaquant
+ * @param {*} posVictime La position de la victime
  */
 function gererAttaque(posAttaquant, posVictime) {
 
@@ -183,14 +178,13 @@ function gererAttaque(posAttaquant, posVictime) {
     }
 
     gererFinPartie();
-
 }
 
 
 /**
- * Gère un combat entre deux personnages.
- * @param {*} pos1 Position d'un personnage.
- * @param {*} pos2 Position d'un autre personnage.
+ * Gére un combat entre deux personnages.
+ * @param {*} pos1 Position d'un personnage
+ * @param {*} pos2 Position de l'autre personnage
  */
 function gererCombat(pos1, pos2) {
     gererAttaque(pos1, pos2);
@@ -202,7 +196,7 @@ function gererCombat(pos1, pos2) {
 
 
 /**
- * Essaie de faire avancer un personnage dans une direction
+ * Essaie de faire avancer un personnage dans une direction.
  * @param {*} position Position courante
  * @param {*} classe La classe du personnage
  * @param {*} direction La direction désirée
@@ -234,10 +228,8 @@ function faireAvancerSiPossible(position, classe, direction) {
     return null;
 }
 
-
-
 /**
- * Fait avancer tous les méchants
+ * Fait avancer tous les méchants.
  */
 function faireAvancerLesMechants() {
     for (const m of jeu.find(".mechant")) {
@@ -268,10 +260,10 @@ function creerPersonnage(classe) {
 
     return perso;
 }
-let i = 0;
+
 /**
- * Place aléatoirement une classe sur une tuile libre du jeu
- * @param {*} classe La classe à mettre sur la tuile.
+ * Méthode pour placer aléatoirement une classe sur une tuile libre du jeu
+ * @param {*} classe La classe à mettre sur la tuile
  * @returns La nouvelle position
  */
 function placerAleatoirement(classe) {
@@ -296,5 +288,3 @@ function placerAleatoirement(classe) {
 
     return newPos;
 }
-
-

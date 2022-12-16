@@ -15,14 +15,12 @@ const configDeJeu = {
     nbMechants: 10,
 };
 
-
 let posJoueur = null;
 
-
 /**
- * 
+ * Méthode pour adapter le jeu selon le niveau choisi pas le joueur.
  */
-function ChoisirViveau() {
+function ChoisirNiveau() {
     if (listeModeJeu.eq(0).hasClass("ui-selected") && listeModeJeu.eq(0).text() == "Facile") {
         configDeJeu.taille.x = 8;
         configDeJeu.taille.y = 4;
@@ -43,8 +41,8 @@ function ChoisirViveau() {
 }
 
 /**
- * Gère les flèches au clavier
- * @param {Event} evenement Pour avoir le code
+ * Gére les flèches au clavier.
+ * @param {Event} evenement la touche tapé
  */
 function gererClavier(evenement) {
     if ((evenement.which >= Directions.MIN) && (evenement.which <= Directions.MAX)) {
@@ -61,12 +59,12 @@ let min = null;
 let minVie = null;
 
 /**
- * Gère le bouton Démarrer
+ * Gére le bouton Démarrer.
  */
 function gererBoutonDemarrer() {
     let btn = $("#demarrer");
     if ($("#jeu").children().length == 0) {
-        ChoisirViveau();
+        ChoisirNiveau();
         creerJeu();
         posJoueur = placerAleatoirement("joueur");
 
@@ -91,7 +89,7 @@ function gererBoutonDemarrer() {
 }
 
 /**
- * 
+ * Méthode qui gére le bouton rejouer.
  */
 function gererBoutonRejouer() {
     $("#jeu").children().replaceWith("");
@@ -108,8 +106,6 @@ function gererBoutonRejouer() {
     clearInterval(min);
 }
 
-
-
 /**
  * Initialisation de la page.
  */
@@ -118,6 +114,6 @@ function initialisation() {
     $("#rejouer").click(gererBoutonRejouer);
 
     $("#selectable").selectable();
-
 }
+
 $(document).ready(initialisation);
