@@ -7944,7 +7944,7 @@ textarea.form-control-lg {
   margin: 1.5rem !important;
 }
 
-.m-5, #jeuUtils #prepaJeu #info {
+.m-5, #jeuUtils #prepaJeu #infos {
   margin: 3rem !important;
 }
 
@@ -8423,7 +8423,7 @@ textarea.form-control-lg {
   text-align: right !important;
 }
 
-.text-center, footer, #jeu, #jeuUtils #button, #jeuUtils #prepaJeu #info, #jeuUtils #prepaJeu #modeJeu ul, #jeuUtils #prepaJeu #modeJeu, header {
+.text-center, footer, #jeu, #jeuUtils #button, #jeuUtils #prepaJeu #infos, #jeuUtils #prepaJeu #modeJeu ul, #jeuUtils #prepaJeu #modeJeu, header {
   text-align: center !important;
 }
 

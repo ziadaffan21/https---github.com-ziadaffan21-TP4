@@ -43,10 +43,10 @@ function gererFinPartie() {
         $(document).off("keydown", gererClavier);
     }
     if (mechant.length == 0) {
-        alert("Bravo ! Cliquer sur rejouer.");
+        $("#infos").empty().append("Félicitation pour votre victoire ! <br/> Cliquer sur rejouer pour faire une nouvelle partie.");
     }
     if (joueur.length == 0) {
-        alert("Cliquer sur rejouer pour retenter votre chance !");
+        $("#infos").empty().append("Dommage mais bonne nouvelle vous pouvez encore essayer ! <br/> Cliquer sur rejouer pour faire une nouvelle partie.");
     }
 
 }
