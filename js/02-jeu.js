@@ -180,7 +180,6 @@ function gererAttaque(posAttaquant, posVictime) {
     gererFinPartie();
 }
 
-
 /**
  * Gére un combat entre deux personnages.
  * @param {*} pos1 Position d'un personnage
@@ -237,8 +236,6 @@ function faireAvancerLesMechants() {
             $(m), "mechant", entierAleatoire(Directions.MIN, Directions.MAX));
     }
 }
-
-
 
 /**
  * Retourne un nouveau personnage.

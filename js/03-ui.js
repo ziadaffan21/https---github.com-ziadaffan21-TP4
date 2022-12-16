@@ -23,20 +23,22 @@ let posJoueur = null;
 function ChoisirNiveau() {
     if (listeModeJeu.eq(0).hasClass("ui-selected") && listeModeJeu.eq(0).text() == "Facile") {
         configDeJeu.taille.x = 8;
-        configDeJeu.taille.y = 4;
+        configDeJeu.taille.y = 5;
         configDeJeu.nbMechants = 5;
     } else if (listeModeJeu.eq(1).hasClass("ui-selected") && listeModeJeu.eq(1).text() == "Moyen") {
-        configDeJeu.taille.x = 10;
-        configDeJeu.taille.y = 7;
+        configDeJeu.taille.x = 12;
+        configDeJeu.taille.y = 8;
         configDeJeu.nbMechants = 7;
     } else if (listeModeJeu.eq(2).hasClass("ui-selected") && listeModeJeu.eq(2).text() == "Difficile") {
-        configDeJeu.taille.x = 14;
+        configDeJeu.taille.x = 15;
         configDeJeu.taille.y = 10;
         configDeJeu.nbMechants = 10;
     } else if (listeModeJeu.eq(3).hasClass("ui-selected") && listeModeJeu.eq(3).text() == "Extrême") {
-        configDeJeu.taille.x = 16;
+        configDeJeu.taille.x = 17;
         configDeJeu.taille.y = 12;
-        configDeJeu.nbMechants = 15;
+        configDeJeu.nbMechants = 17;
+    }else{
+        listeModeJeu.eq(2).addClass("ui-selected");
     }
 }
 
