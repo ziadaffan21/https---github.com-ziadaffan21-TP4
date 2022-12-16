@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* global Directions faireAvancerSiPossible faireAvancerLesMechants creerJeu placerAleatoirement placerVieSup */
+/* global Directions faireAvancerSiPossible faireAvancerLesMechants creerJeu placerAleatoirement */
 let listeModeJeu = $("li");
 const configDeJeu = {
     taille: {
@@ -25,7 +25,7 @@ let posJoueur = null;
 function ChoisirViveau() {
     if (listeModeJeu.eq(0).hasClass("ui-selected") && listeModeJeu.eq(0).text() == "Facile") {
         configDeJeu.taille.x = 8;
-        configDeJeu.taille.y = 5;
+        configDeJeu.taille.y = 4;
         configDeJeu.nbMechants = 5;
     } else if (listeModeJeu.eq(1).hasClass("ui-selected") && listeModeJeu.eq(1).text() == "Moyen") {
         configDeJeu.taille.x = 10;
@@ -38,7 +38,7 @@ function ChoisirViveau() {
     } else if (listeModeJeu.eq(3).hasClass("ui-selected") && listeModeJeu.eq(3).text() == "Extrême") {
         configDeJeu.taille.x = 16;
         configDeJeu.taille.y = 12;
-        configDeJeu.nbMechants = 16;
+        configDeJeu.nbMechants = 15;
     }
 }
 
@@ -77,12 +77,12 @@ function gererBoutonDemarrer() {
 
     if (btn.text() === "Démarrer") {
         posJoueur = $(".joueur");
-        min = setInterval(faireAvancerLesMechants, 1000);//1000
-        //minVie = setTimeout(placerVieSup, 100);//10000
+        min = setInterval(faireAvancerLesMechants, 1000);
         $("#selectable").selectable({"disabled" : true});
         $(document).keydown(gererClavier);
         btn.text("Arreter");
         btn.attr("class", "btn btn-danger");
+        $("footer").scroll();
     } else {
         btn.text("Démarrer");
         btn.attr("class", "btn btn-primary");

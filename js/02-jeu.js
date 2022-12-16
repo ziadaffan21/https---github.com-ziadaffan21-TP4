@@ -106,7 +106,7 @@ function getNouvellePosition(position, direction) {
 }
 
 /**
- * Methode pour placer une vie supplementaire
+ * Méthode pour placer une vie supplementaire
  */
 function placerVieSup() {
     let trouve = false;
@@ -145,7 +145,7 @@ function changerValeur() {
 }
 
 /**
- * Gère l'attaque de attaquant sur sa victime
+ * Gère l'attaque entre deux personnages
  * @param {*} posAttaquant L'attaquant
  * @param {*} posVictime La victime
  */
@@ -180,7 +180,7 @@ function gererAttaque(posAttaquant, posVictime) {
 
 
 /**
- * Gère un combat entre deux personnage.
+ * Gère un combat entre deux personnages.
  * @param {*} pos1 Position d'un personnage.
  * @param {*} pos2 Position d'un autre personnage.
  */
@@ -190,7 +190,6 @@ function gererCombat(pos1, pos2) {
     if (pos2.data("personnage") != undefined) {
         gererAttaque(pos2, pos1);
     }
-    //gererFinPartie();
 }
 
 
@@ -209,7 +208,7 @@ function faireAvancerSiPossible(position, classe, direction) {
     for (let i = 0; i < listDirPossible.length; i++) {
         if (direction === listDirPossible[i] && !(positionPossible.hasClass("mechant") || positionPossible.hasClass("joueur"))) {
             if ((position.hasClass("joueur")) && positionPossible.hasClass("vie_sup")) {
-                position.data("personnage").vie += 10;
+                position.data("personnage").vie += 20;
                 $("#vie").empty().append(position.data("personnage").vie);
                 positionPossible.removeClass("vie_sup");
             }
