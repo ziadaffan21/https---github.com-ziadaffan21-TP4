@@ -95,9 +95,9 @@ function gererBoutonDemarrer() {
  */
 function gererBoutonRejouer() {
     $("#jeu").children().replaceWith("");
-    let firstChild = document.getElementById("infos").firstChild;
-    while(firstChild){
-        firstChild.remove();
+    let divInfos = document.getElementById("infos");
+    while (divInfos.firstChild) {
+        divInfos.firstChild.remove();
     }
     $(".ui-selected").removeClass("ui-selected");
     $("#demarrer").text("Démarrer");
