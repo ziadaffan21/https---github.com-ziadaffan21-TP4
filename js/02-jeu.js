@@ -32,6 +32,12 @@ function creerJeu() {
 
 }
 /**
+ * 
+ */
+function monterPage() {
+    $('html, body').animate({ scrollTop: '0px'}, 500);
+}
+/**
  * Verification si fin de partie.
  */
 function gererFinPartie() {
@@ -44,9 +50,11 @@ function gererFinPartie() {
     }
     if (mechant.length == 0) {
         $("#infos").empty().append("Félicitation pour votre victoire ! <br/> Cliquer sur rejouer pour faire une nouvelle partie.");
+        monterPage();
     }
     if (joueur.length == 0) {
         $("#infos").empty().append("Dommage mais bonne nouvelle vous pouvez encore essayer ! <br/> Cliquer sur rejouer pour faire une nouvelle partie.");
+        monterPage();
     }
 
 }
@@ -165,7 +173,7 @@ function gererAttaque(posAttaquant, posVictime) {
         dataAttaquant.dommage++;
         dataAttaquant.or += dataVictime.or;
         posVictime.attr("id", "effetHighlight");
-        if(dataVictime.classe == "mechant"){
+        if (dataVictime.classe == "mechant") {
             $("#effetHighlight").effect("highlight", 500);
         }
         posVictime.removeClass(dataVictime.classe);

@@ -82,7 +82,6 @@ function gererBoutonDemarrer() {
         $(document).keydown(gererClavier);
         btn.text("Arreter");
         btn.attr("class", "btn btn-danger");
-        $("footer").scroll();
     } else {
         btn.text("Démarrer");
         btn.attr("class", "btn btn-primary");
@@ -96,6 +95,10 @@ function gererBoutonDemarrer() {
  */
 function gererBoutonRejouer() {
     $("#jeu").children().replaceWith("");
+    let firstChild = document.getElementById("infos").firstChild;
+    while(firstChild){
+        firstChild.remove();
+    }
     $(".ui-selected").removeClass("ui-selected");
     $("#demarrer").text("Démarrer");
     $("#demarrer").attr("class", "btn btn-primary");
